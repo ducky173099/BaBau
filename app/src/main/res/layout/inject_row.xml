@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginBottom="7dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingBottom="10dp"
+        android:background="@drawable/custom_btnfff"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgInjectbaby"
+                android:layout_centerInParent="true"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_sesame"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <TextView
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuần 3-4"
+                android:id="@+id/txtOldbaby"/>
+            <TextView
+                android:textSize="14sp"
+                android:textColor="#BA757885"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hạt mè"
+                android:id="@+id/txtContentinject"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

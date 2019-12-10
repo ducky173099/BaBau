@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="home"
+        android:id="@+id/home"
+        android:icon="@drawable/ichome"/>
+    <item
+        android:title="child"
+        android:id="@+id/child"
+        android:icon="@drawable/icchild"/>
+    <item
+        android:title="mom"
+        android:id="@+id/mom"
+        android:icon="@drawable/icmom"/>
+    <item
+        android:title="popcorm"
+        android:id="@+id/popcorm"
+        android:icon="@drawable/icpopcorn"/>
+</menu>
