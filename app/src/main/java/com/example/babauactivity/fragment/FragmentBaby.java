@@ -1,6 +1,9 @@
 package com.example.babauactivity.fragment;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,8 @@ import com.example.babauactivity.activity.ChonTenActivity;
 import com.example.babauactivity.activity.FeetActivity;
 import com.example.babauactivity.activity.InjectActivity;
 import com.example.babauactivity.activity.KichthuocActivity;
+import com.example.babauactivity.activity.NickActivity;
+import com.example.babauactivity.activity.PictureBabyActivity;
 import com.example.babauactivity.activity.ThaiKiActivity;
 import com.example.babauactivity.adapter.ItemClick;
 import com.example.babauactivity.model.DataChild;
@@ -38,13 +43,13 @@ public class FragmentBaby extends Fragment implements ItemClick { // buoc 1 impl
         recyclerView.setLayoutManager(gridLayoutManager);
 
         dataChildArrayList = new ArrayList<>();
-        dataChildArrayList.add(new DataChild(R.drawable.ic_checklist, "Thai kỳ"));
-        dataChildArrayList.add(new DataChild(R.drawable.ic_babyweight, "Kích thước"));
-        dataChildArrayList.add(new DataChild(R.drawable.ic_anesthesia, "Lịch tiêm phòng"));
-        dataChildArrayList.add(new DataChild(R.drawable.ic_feet, "Đếm số lần đạp"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Thai kỳ"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Kích thước"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Lịch tiêm phòng"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Đếm số lần đạp"));
         dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Chọn tên"));
-        dataChildArrayList.add(new DataChild(R.drawable.ic_stork, "Ảnh bé yêu"));
-        dataChildArrayList.add(new DataChild(R.drawable.ic_mother, "Nickname dễ thương"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Ảnh bé yêu"));
+        dataChildArrayList.add(new DataChild(R.drawable.ic_book, "Nickname dễ thương"));
 
 
         ChildAdapter childAdapter = new ChildAdapter(dataChildArrayList, getContext());
@@ -62,7 +67,9 @@ public class FragmentBaby extends Fragment implements ItemClick { // buoc 1 impl
         switch (position){
             case 0:
                 Intent intent = new Intent(getContext(), ThaiKiActivity.class);
-                startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                }
                 break;
             case 1:
                 Intent kichthuoc = new Intent(getContext(), KichthuocActivity.class);
@@ -79,6 +86,14 @@ public class FragmentBaby extends Fragment implements ItemClick { // buoc 1 impl
             case 4:
                 Intent intent1 = new Intent(getContext(), ChonTenActivity.class);
                 startActivity(intent1);
+                break;
+            case 5:
+                Intent picturebaby = new Intent(getContext(), PictureBabyActivity.class);
+                startActivity(picturebaby);
+                break;
+            case 6:
+                Intent nickname = new Intent(getContext(), NickActivity.class);
+                startActivity(nickname);
                 break;
         }
 

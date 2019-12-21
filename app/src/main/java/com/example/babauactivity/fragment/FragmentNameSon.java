@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragmentNameSon extends BaseFragment<MainActivity> {
+public class FragmentNameSon extends BaseFragment<MainActivity> implements NameSonAdapter.ItemClick {
     RecyclerView recyclerViewNameson;
 
     ArrayList<DataNameSon> dataNameSon;
@@ -54,16 +54,23 @@ public class FragmentNameSon extends BaseFragment<MainActivity> {
         dataNameSon = new ArrayList<>();
         dataNameSonList = new ArrayList<>();// search list
 
-        adapter = new NameSonAdapter(getContext());
-        recyclerViewNameson = findViewById(R.id.recycler_listson);
+        recyclerViewNameson =findViewById(R.id.recycler_listson);
         edtSearchList = findViewById(R.id.edtSearchList);
 
         databaseHelper = new DatabaseHelper(getContext());
         dataNameSon = databaseHelper.getAll();
-        Log.d("log", "initView: " + dataNameSon.size());
+        for (int i = 0; i <dataNameSon.size() ; i++) {
+            Log.d("Son", "initView son: " + dataNameSon.get(i).getSex());
+
+        }
+        adapter = new NameSonAdapter(getContext());
+        recyclerViewNameson.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
+
+        recyclerViewNameson.setAdapter(adapter);
 
         adapter.setDataNameSon(dataNameSon);
-        recyclerViewNameson.setAdapter(adapter);
+
+        adapter.setClickYnghia(this);
 
         edtSearchList.addTextChangedListener(new TextWatcher() { // Search Lits
             @Override
@@ -103,4 +110,8 @@ public class FragmentNameSon extends BaseFragment<MainActivity> {
 
     }
 
+    @Override
+    public void ClickYnghia(int position) {
+
+    }
 }

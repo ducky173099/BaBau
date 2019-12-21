@@ -325,46 +325,29 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            android:weightSum="10"
-            android:orientation="horizontal"
+        <Button
+            android:drawablePadding="15dp"
+            android:id="@+id/btnNhatky"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@android:color/transparent"
+            android:text="Nhật ký của mẹ"
+            android:textColor="#1BFFAB"
+            android:drawableRight="@drawable/vector_plus"
+            android:drawableLeft="@drawable/vector_picture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <ImageView
-                    android:src="@drawable/ic_picture"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
-            </RelativeLayout>
-            <TextView
-                android:paddingLeft="20dp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:textColor="#1BFFAB"
-                android:textSize="15sp"
-                android:text="Nhật Ký của mẹ"/>
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_plus"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp" />
-            </RelativeLayout>
-        </LinearLayout>
+            android:textAlignment="textStart"
+            android:layout_height="match_parent"
+            android:gravity="start|center" />
     </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_Diary"/>
     <TextView
         android:layout_marginTop="5dp"
         android:layout_gravity="center"

@@ -35,6 +35,7 @@ public class InjectBabyAdapter extends RecyclerView.Adapter<InjectBabyAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.imgInjectbaby.setImageResource(dataInjects.get(position).getHinhinject());
         holder.txtOld.setText(dataInjects.get(position).getOld());
         holder.txtContetn.setText(dataInjects.get(position).getContetn());

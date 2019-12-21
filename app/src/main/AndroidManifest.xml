@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.babauactivity">
-
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.FeetActivity"></activity>
+        <activity android:name=".activity.DiaryActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".activity.NickActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.StoryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.CookingActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ShopActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ThucphamActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.CannangActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.HoatDongActivity" />
+        <activity
+            android:name=".activity.CamnangActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.ItemPictureActivity" />
+        <activity android:name=".activity.PictureBabyActivity" />
+        <activity android:name=".activity.FeetActivity" />
         <activity android:name=".activity.InjectActivity" />
         <activity android:name=".activity.KichthuocActivity" />
         <activity android:name=".activity.SplashActivity">

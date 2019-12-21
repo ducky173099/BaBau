@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/radiuswhile"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_stt"
+                android:layout_centerInParent="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_acircle"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:paddingRight="25dp"
+            android:paddingLeft="10dp"
+            android:layout_weight="9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtcamnang"
+                android:text="Kế hoạch sinh?"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

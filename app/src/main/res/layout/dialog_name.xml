@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/txtnamedialog"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="30sp"
+        android:textColor="#0998B1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trường An"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#0998B1"/>
+    <TextView
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đó là sự mong muốn muốn của bố mẹ để bé luôn có một cuộc sống an lành, may mắn và hạnh phúc nhờ tài năng và đức độ cảu minh"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#777C7C"/>
+    <Button
+        android:id="@+id/btnback"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:textColor="#000"/>
+</LinearLayout>

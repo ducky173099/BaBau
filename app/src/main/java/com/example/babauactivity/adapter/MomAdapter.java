@@ -15,10 +15,16 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MomAdapter extends RecyclerView.Adapter<MomAdapter.ViewHolder> { // buoc 2:extend
+public class MomAdapter extends RecyclerView.Adapter<MomAdapter.ViewHolder>{ // buoc 2:extend
     // buoc 3
     Context context;
     ArrayList<DataMom> dataMom;
+
+    private ItemClick clickMom; // buoc 2 interface
+
+    public void setClickMom(ItemClick clickMom) { // buoc 3 interface
+        this.clickMom = clickMom;
+    }
 
     public MomAdapter(Context context, ArrayList<DataMom> dataMom) {
         this.context = context;
@@ -40,11 +46,23 @@ public class MomAdapter extends RecyclerView.Adapter<MomAdapter.ViewHolder> { //
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtnamemom.setText(dataMom.get(position).getTenmom());
         holder.imgmom.setImageResource(dataMom.get(position).getHinhmom());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickMom.ClickMom(position);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return dataMom.size();
+    }
+
+    // buoc 1 interface
+    public interface ItemClick{
+        void ClickMom(int position);
     }
 
     // buoc 1

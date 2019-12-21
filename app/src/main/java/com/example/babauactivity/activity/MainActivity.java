@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.database.Database;
 import com.example.babauactivity.fragment.FragmentBaby;
 import com.example.babauactivity.fragment.FragmentHome;
 import com.example.babauactivity.fragment.FragmentMom;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText edtdate;
     BottomNavigationView botnav;
     Fragment selectFragment = null;
+
+    public  static Database database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

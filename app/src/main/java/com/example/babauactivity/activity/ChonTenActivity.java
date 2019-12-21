@@ -47,7 +47,7 @@ public class ChonTenActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                Log.e("AAA", "onPageSelected: sssssssssssss");
                 FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
                 tf.detach(tabNameAdapter.getItem(position));
                 tf.attach(tabNameAdapter.getItem(position));

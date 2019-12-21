@@ -36,27 +36,34 @@ public class KichthuocActivity extends AppCompatActivity {
         recyclerViewSizeBaby.setLayoutManager(layoutManager);
 
         dataSizebaby = new ArrayList<>();
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
-        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+        for (int i = 0; i <= 20; i ++){
+            dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+        }
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_rice,"Tuần 6","Hạt gạo","6 mm - 0.2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_blueberries,"Tuần 7","Quả việt quất","1.3 cm - 0.5 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_raspberry,"Tuần 8","Quả dâu rừng","1.6 cm - 1 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_grapes,"Tuần 9","Quả nho","2.3 mm - 2 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_beach,"Tuần 10","Quả chà là","3.1 cm - 4 g (Đo từ đầu đến mông)"));
+//        dataSizebaby.add(new DataSizebaby(R.drawable.ic_sesame,"Tuần 5","Hạt mè","2 mm - 0.1 g (Đo từ đầu đến mông)"));
 
 
         sizeBabyAdapter = new SizeBabyAdapter(this, dataSizebaby);

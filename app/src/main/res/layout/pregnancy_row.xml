@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/radiuswhile"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_Cook"
+                android:layout_centerInParent="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/khoaihap"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:paddingRight="5dp"
+            android:paddingLeft="10dp"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtDescCook"
+                android:text="Chả khoai hấp"
+                android:textColor="#000"
+                android:textColorHint="#000"
+                android:textSize="17sp"
+                android:background="@color/tranparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtContentCook"
+                android:textColor="#000"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngày nắng nắng mưa mưa thế này, thời tiết lại khá oi nồng, nếu..."/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/img_starCook"
+                android:layout_centerInParent="true"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_star"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

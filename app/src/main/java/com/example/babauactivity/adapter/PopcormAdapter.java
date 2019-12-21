@@ -19,6 +19,12 @@ public class PopcormAdapter extends RecyclerView.Adapter<PopcormAdapter.ViewHold
     ArrayList<DataPopcorm> dataPopcorm;
     Context context;
 
+    private ItemClick clickPopcorm;
+
+    public void setClickPopcorm(ItemClick clickPopcorm) {
+        this.clickPopcorm = clickPopcorm;
+    }
+
     public PopcormAdapter(ArrayList<DataPopcorm> dataPopcorm, Context context) {
         this.dataPopcorm = dataPopcorm;
         this.context = context;
@@ -37,6 +43,13 @@ public class PopcormAdapter extends RecyclerView.Adapter<PopcormAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtnamepopcorm.setText(dataPopcorm.get(position).getTenpopcorm());
         holder.imgpopcorm.setImageResource(dataPopcorm.get(position).getHinhpopcorm());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickPopcorm.ClickPopcorm(position);
+            }
+        });
     }
 
     @Override
@@ -55,5 +68,9 @@ public class PopcormAdapter extends RecyclerView.Adapter<PopcormAdapter.ViewHold
             imgpopcorm = itemView.findViewById(R.id.img_popcorm);
 
         }
+    }
+
+    public interface ItemClick{
+        void ClickPopcorm(int position);
     }
 }

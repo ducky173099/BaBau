@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F79898"
+    tools:context="com.example.babauactivity.activity.ItemPictureActivity">
+    <ImageView
+        android:id="@+id/imgpagerdel"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_cross"/>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="100dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/imgpagerdel"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/pager_baby"/>
+
+</RelativeLayout>

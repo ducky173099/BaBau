@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class TabNameAdapter extends FragmentStatePagerAdapter {
+public class TabNameAdapter extends FragmentPagerAdapter {
     private String listTab[] = {"Con trai", "Con gái","Yêu thích"}; // mang string luu title cua tab
 
     private FragmentNameSon fragmentNameSon;

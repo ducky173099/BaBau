@@ -13,7 +13,8 @@
         android:weightSum="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
         <RelativeLayout
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -30,7 +31,8 @@
             android:layout_weight="8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/txtnameson"
                 android:text="Mạnh Bằng"

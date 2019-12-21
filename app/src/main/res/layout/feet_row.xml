@@ -58,6 +58,7 @@
                     android:textSize="30sp"
                     android:textColor="#1AAF6B"/>
                 <ImageView
+                    android:id="@+id/imgdelfeet"
                     android:layout_alignParentRight="true"
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"

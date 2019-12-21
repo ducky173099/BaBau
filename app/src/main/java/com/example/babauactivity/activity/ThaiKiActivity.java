@@ -66,8 +66,6 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.HORIZONTAL, false);
         recyclerViewDatetk.setLayoutManager(layoutManager);
 
-
-
         dataDatetk = new ArrayList<>();
         dataDatetk.add(new DataDatetk("1","06/12"));
         dataDatetk.add(new DataDatetk("2","13/12"));

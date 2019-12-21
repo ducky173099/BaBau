@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.Toolbar
+        android:background="#F3039268"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:id="@+id/toolbar_camnang"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:paddingRight="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cẩm nang"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+    </androidx.appcompat.widget.Toolbar>
+    <com.google.android.material.tabs.TabLayout
+        android:background="#F3039268"
+        android:layout_width="match_parent"
+        app:tabMode="scrollable"
+        app:tabIndicatorColor="#fff"
+        app:tabSelectedTextColor="#fff"
+        app:tabTextColor="#fff"
+        android:id="@+id/tab_camnang"
+        android:layout_height="?attr/actionBarSize"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_camnang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

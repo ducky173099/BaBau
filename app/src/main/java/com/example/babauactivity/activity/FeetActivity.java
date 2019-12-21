@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.adapter.DateThaikiAdapter;
 import com.example.babauactivity.adapter.FeetAdapter;
 import com.example.babauactivity.model.DataFeet;
 
@@ -22,9 +27,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FeetActivity extends AppCompatActivity {
+public class FeetActivity extends AppCompatActivity implements FeetAdapter.ItemClick{
     Toolbar toolbar_feet;
-    TextView txtStart, txtTimer, txtFeet;
+    TextView  txtTimer, txtFeet;
+    Button btnStart;
+
+    ImageView imgdelfeet;
 
     RecyclerView recyclerView_feet;
     ArrayList<DataFeet> dataFeets;
@@ -74,18 +82,6 @@ public class FeetActivity extends AppCompatActivity {
 
     }
 
-    private void addFeet(){
-        recyclerView_feet = findViewById(R.id.recycler_feet);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
-        recyclerView_feet.setLayoutManager(layoutManager);
-
-        dataFeets = new ArrayList<>();
-        dataFeets.add(new DataFeet(R.drawable.ic_two,timer,timenow,Val));
-
-        feetAdapter = new FeetAdapter(getApplicationContext(), dataFeets);
-
-        recyclerView_feet.setAdapter(feetAdapter);
-    }
 
     private void realTime() {
         Date today = new Date(System.currentTimeMillis());
@@ -100,37 +96,38 @@ public class FeetActivity extends AppCompatActivity {
         increase_feet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count++;
+                value = Integer.toString(count);
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        count++;
-                        value = Integer.toString(count);
-                        Val = String.valueOf(count);
-                        txtFeet.setText(value);
-                    }
-                });
-
+                txtFeet.setText(value);
             }
         });
     }
 
     private void runTime() {
-        txtStart.setText("Bắt Đầu");
-
-        txtStart.setOnClickListener(new View.OnClickListener() {
+        btnStart.setText("Bắt Đầu");
+        btnStart.setSelected(true);
+        dataFeets = new ArrayList<>();
+        feetAdapter = new FeetAdapter(getApplicationContext(), dataFeets);
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-                TextView txtStart = (TextView) view;
-                if (txtStart.getText().equals("Kết Thúc")) {
-
+                Log.e("TAG","CHECK BTN: "+btnStart.isSelected());
+//                TextView txtStart = (TextView) view;
+                if (!btnStart.isSelected()) {
+                    btnStart.setSelected(true);
                     timerHandler.removeCallbacks(timerRunnable);
-                    txtStart.setText("Bắt Đầu");
-                    txtStart.setBackground(getResources().getDrawable(R.drawable.radiusgreen));
+                    btnStart.setText("Bắt Đầu");
+//                    btnStart.setBackground(getResources().getDrawable(R.drawable.radiusgreen));
                     increase_feet.setClickable(false);
 
-                    addFeet();
+                    recyclerView_feet = findViewById(R.id.recycler_feet);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
+                    recyclerView_feet.setLayoutManager(layoutManager);
+                    feetAdapter.AddFeet(new DataFeet(R.drawable.ic_two,timer,timenow,String.valueOf(count)));
+                    recyclerView_feet.setAdapter(feetAdapter);
+
 
                     txtFeet.setText(String.valueOf(0));
                     count = 0;
@@ -138,10 +135,11 @@ public class FeetActivity extends AppCompatActivity {
 
 
                 } else {
+                    btnStart.setSelected(false);
                     startTime = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnable, 0);
-                    txtStart.setText("Kết Thúc");
-                    txtStart.setBackground(getResources().getDrawable(R.drawable.radius_purple));
+                    btnStart.setText("Kết Thúc");
+//                    btnStart.setBackground(getResources().getDrawable(R.drawable.radius_purple));
                     increase_feet.setClickable(true);
                     runFeet();
 
@@ -151,7 +149,7 @@ public class FeetActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        txtStart = findViewById(R.id.txtStart);
+        btnStart = findViewById(R.id.btnStart);
         txtTimer = findViewById(R.id.txtTimer);
         increase_feet = findViewById(R.id.increase_feet);
         txtFeet = findViewById(R.id.txtfeet);
@@ -176,4 +174,8 @@ public class FeetActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void ClickDel(int position) {
+
+    }
 }

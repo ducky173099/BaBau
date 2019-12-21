@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="#F3039268"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:id="@+id/toolbar_Diary"
+        android:layout_height="?attr/actionBarSize">
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginRight="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viết nhật ký"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_below="@id/toolbar_Diary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:gravity="top"
+                android:layout_above="@+id/botDiary"
+                android:id="@+id/edtDiary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:hint="Hôm nay bạn thế nào?"
+                android:textColorHint="#000"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="15dp"/>
+            <RelativeLayout
+                android:id="@+id/botDiary"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:gravity="center"
+                android:background="@drawable/border_top"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <ImageView
+                    android:id="@+id/btnImage"
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_picture"/>
+                <ImageView
+                    android:id="@+id/btnPustDiary"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/round_button"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <ImageView
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/anhduocchon"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

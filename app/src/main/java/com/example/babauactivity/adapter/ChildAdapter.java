@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.babauactivity.model.DataChild;
 import com.example.babauactivity.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,7 +45,11 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
     // buoc 5
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtnamechild.setText(dataChild.get(position).getTenchild());
-        holder.imgHinhchild.setImageResource(dataChild.get(position).getHinhchild());
+//        holder.imgHinhchild.setImageResource(dataChild.get(position).getHinhchild());
+        Picasso.get()
+                .load(dataChild.get(position).getHinhchild())
+                .placeholder(R.drawable.loading)
+                .into(holder.imgHinhchild);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +78,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
 
             txtnamechild = itemView.findViewById(R.id.txt_child);
             imgHinhchild = itemView.findViewById(R.id.img_child);
+
         }
     }
 

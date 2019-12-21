@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.model.DataFeet;
@@ -18,16 +19,21 @@ import androidx.recyclerview.widget.RecyclerView;
 public class FeetAdapter extends RecyclerView.Adapter<FeetAdapter.ViewHolder> {
     Context context;
     ArrayList<DataFeet> dataFeets;
-    DataFeet dataFeet;
+
+    private ItemClick clickDel;
+
+    public void setClickDel(ItemClick clickDel) {
+        this.clickDel = clickDel;
+        notifyDataSetChanged();
+    }
 
     public FeetAdapter(Context context, ArrayList<DataFeet> dataFeets) {
         this.context = context;
         this.dataFeets = dataFeets;
     }
 
-    public void addFeettime(ArrayList<DataFeet> dataFeets) {
-
-
+    public void AddFeet(DataFeet dataFeet) {
+        dataFeets.add(dataFeet);
         notifyDataSetChanged();
     }
 
@@ -51,7 +57,15 @@ public class FeetAdapter extends RecyclerView.Adapter<FeetAdapter.ViewHolder> {
         holder.txtRealtime.setText(dataFeets.get(position).getRealtime());
         holder.txtCountFeet.setText(dataFeets.get(position).getFeet());
 
-//        holder.imgDel.setImageResource(R.drawable.ic_substract);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "del " + position, Toast.LENGTH_SHORT).show();
+                dataFeets.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
     }
 
     @Override
@@ -59,8 +73,9 @@ public class FeetAdapter extends RecyclerView.Adapter<FeetAdapter.ViewHolder> {
         return dataFeets.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgTwo, imgDel;
+        ImageView imgTwo, imgdelfeet;
         TextView txtTimeFeet, txtRealtime, txtCountFeet;
 
         public ViewHolder(@NonNull View itemView) {
@@ -70,6 +85,12 @@ public class FeetAdapter extends RecyclerView.Adapter<FeetAdapter.ViewHolder> {
             txtTimeFeet = itemView.findViewById(R.id.txtTimefeet);
             txtRealtime = itemView.findViewById(R.id.txtRealtime);
             txtCountFeet = itemView.findViewById(R.id.txtCountfeet);
+
+            imgdelfeet = itemView.findViewById(R.id.imgdelfeet);
         }
+    }
+
+    public interface ItemClick{
+        void ClickDel(int position);
     }
 }
