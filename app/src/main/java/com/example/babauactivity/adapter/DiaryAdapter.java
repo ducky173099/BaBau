@@ -22,16 +22,17 @@ import androidx.recyclerview.widget.RecyclerView;
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
     Context context;
     ArrayList<DataDiary> dataDiaries;
+    DatabaseHelper databaseHelper;
 
     public void setDataDiaries(ArrayList<DataDiary> dataDiaries) {
         this.dataDiaries = dataDiaries;
         notifyDataSetChanged();
     }
 
-    public DiaryAdapter(Context context, ArrayList<DataDiary> dataDiaries) {
+    public DiaryAdapter(Context context, ArrayList<DataDiary> dataDiaries, DatabaseHelper databaseHelper) {
         this.context = context;
         this.dataDiaries = dataDiaries;
-
+        this.databaseHelper = databaseHelper;
     }
 
     public void AddDairy(DataDiary dataDiary){
@@ -50,6 +51,8 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        DataDiary dataDiary = dataDiaries.get(position);
+
         holder.txtTimeDiary.setText(dataDiaries.get(position).getTime());
         holder.txtDiary.setText(dataDiaries.get(position).getContent());
 

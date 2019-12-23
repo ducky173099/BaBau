@@ -9,7 +9,9 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,8 +22,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
@@ -37,6 +43,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class DiaryActivity extends AppCompatActivity {
     Toolbar toolbar_Diary;
@@ -48,8 +55,8 @@ public class DiaryActivity extends AppCompatActivity {
     final int REQUEST_CODE_FOLDER = 456;
 
     ArrayList<DataDiary> dataDiaries;
-    public static String timeDiary;
-    public static String contentDiary;
+    String timeDiary;
+    String contentDiary;
 
 
     BitmapDrawable bitmapDrawable;
@@ -75,6 +82,8 @@ public class DiaryActivity extends AppCompatActivity {
         btnPustDiary = findViewById(R.id.btnPustDiary);
         anhduocchon = findViewById(R.id.anhduocchon);
 
+
+
         AddDiary();
 
     }
@@ -82,22 +91,76 @@ public class DiaryActivity extends AppCompatActivity {
 
 
     private void AddDiary() {
+        realTime();
 
         btnImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ActivityCompat.requestPermissions(
-                        DiaryActivity.this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_FOLDER
-                );
+                Dialog dialog = new Dialog(DiaryActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_cam);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-//                ActivityCompat.requestPermissions(
-//                        DiaryActivity.this,
-//                        new String[]{android.Manifest.permission.CAMERA},
-//                        REQUEST_CODE_CAMERA
-//                );
+                dialog.getWindow().setAttributes(lp);
+
+                Button backcam = dialog.findViewById(R.id.backcam);
+
+                TextView txtChonanh = dialog.findViewById(R.id.txtChonanh);
+                TextView txtChupanh = dialog.findViewById(R.id.txtChupanh);
+                TextView txtAnhdachup = dialog.findViewById(R.id.txtAnhdachup);
+
+                txtChonanh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ActivityCompat.requestPermissions(
+                                DiaryActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                REQUEST_CODE_FOLDER
+                        );
+                        dialog.dismiss();
+                    }
+                });
+                txtAnhdachup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ActivityCompat.requestPermissions(
+                                DiaryActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                REQUEST_CODE_FOLDER
+                        );
+                        dialog.dismiss();
+                    }
+                });
+
+                txtChupanh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ActivityCompat.requestPermissions(
+                            DiaryActivity.this,
+                            new String[]{android.Manifest.permission.CAMERA},
+                            REQUEST_CODE_CAMERA
+                        );
+                        dialog.dismiss();
+                    }
+                });
+
+
+                backcam.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+
+
+
 
 
             }
@@ -106,7 +169,10 @@ public class DiaryActivity extends AppCompatActivity {
         btnPustDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseHelper = new DatabaseHelper(getApplicationContext());
+
                 contentDiary = edtDiary.getText().toString().trim();
+
                 // chuyen data imageview -> bye[]
                 bitmapDrawable = (BitmapDrawable) anhduocchon.getDrawable(); // lay hinh tu resuorce
                 if (bitmapDrawable != null){
@@ -119,18 +185,29 @@ public class DiaryActivity extends AppCompatActivity {
                     // mang byte hinhAnh chua du lieu
                     hinhAnh = byteArray.toByteArray();
 
-                    Intent intent = new Intent();
-                    intent.putExtra("dairy",contentDiary);
-                    intent.putExtra("anh",hinhAnh);
-                    setResult(RESULT_OK,intent);
-                    finish();
-                } else {
+                    long id  = databaseHelper.insertDiary(timeDiary,contentDiary,hinhAnh);
 
-                    Intent intent = new Intent();
-                    intent.putExtra("dairy",contentDiary);
-                    intent.putExtra("anh",hinhAnh);
-                    setResult(RESULT_OK,intent);
+                    Intent intent = new Intent(DiaryActivity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
+
+//                    Intent intent = new Intent();
+//                    intent.putExtra("dairy",contentDiary);
+//                    intent.putExtra("anh",hinhAnh);
+//                    setResult(RESULT_OK,intent);
+//                    finish();
+                } else {
+                    long id  = databaseHelper.insertDiary(timeDiary,contentDiary,null);
+
+                    Intent intent = new Intent(DiaryActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+//                    Intent intent = new Intent();
+//                    intent.putExtra("dairy",contentDiary);
+//                    intent.putExtra("anh",hinhAnh);
+//                    setResult(RESULT_OK,intent);
+//                    finish();
                 }
 
 
@@ -143,6 +220,11 @@ public class DiaryActivity extends AppCompatActivity {
         });
     }
 
+    private void realTime() {
+        Date today = new Date(System.currentTimeMillis());
+        SimpleDateFormat timeFormat= new SimpleDateFormat("hh:mm dd/MM/yyyy");
+        timeDiary = timeFormat.format(today.getTime());
+    }
 
 
     @Override
@@ -175,8 +257,9 @@ public class DiaryActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data!= null){
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            Bitmap bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
             anhduocchon.setImageBitmap(bitmap);
+
         }
 
         if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){

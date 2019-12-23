@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="10dp"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtChonanh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn Ảnh"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/txtChupanh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chụp Ảnh"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/txtAnhdachup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn ảnh đã chụp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="#000"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/backcam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thoát"
+                android:textColor="#129288"
+                android:layout_alignParentRight="true"
+                android:textSize="17sp"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
