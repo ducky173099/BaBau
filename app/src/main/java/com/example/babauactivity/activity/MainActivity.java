@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    EditText edtdate;
+
     BottomNavigationView botnav;
     Fragment selectFragment = null;
 
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void Anhxa() {
-        edtdate = findViewById(R.id.edtdate);
 
         botnav = findViewById(R.id.bottomnav);
         botnav.setOnNavigationItemSelectedListener(navListener);

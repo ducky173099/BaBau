@@ -86,7 +86,6 @@
                 android:text="Ngày dự sinh"/>
             <EditText
                 android:text="29/11/2019"
-                android:id="@+id/edtdate"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"

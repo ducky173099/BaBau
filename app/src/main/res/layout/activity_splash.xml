@@ -88,8 +88,8 @@
                 android:text="Ngày dự sinh"/>
             <Button
                 android:gravity="left"
-                android:text="29/11/2019"
-                android:id="@+id/edtdate"
+                android:text="25/12/2019"
+                android:id="@+id/btn_date"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"

@@ -2,6 +2,7 @@ package com.example.babauactivity.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +19,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,8 +30,12 @@ public class SplashActivity extends AppCompatActivity {
     String db_path = "/databases/";
     InputStream is;
     Toolbar toolbar;
+    String timereal;
+    String updateNS;
+    String ten;
+    String nick;
 
-    Button btnluutt,btnboqua,btnTinhdusinh,edtdate;
+    Button btnluutt,btnboqua,btnTinhdusinh,btn_date;
 
     TextView edtname,edtnick;
 
@@ -54,26 +60,49 @@ public class SplashActivity extends AppCompatActivity {
 
         initView();
         setInfo();
-        ngayDuSInh();
+        tinhNgaySinh();
 
 
+        Intent getDate = getIntent();
+        updateNS = getDate.getStringExtra("update");
+        Log.e("update", "lay date: " + updateNS);
+        if (updateNS==null){
+            realTime();
+        }else{
+            btn_date.setText(updateNS);
+            SharedPreferences sharedPreferences = getSharedPreferences("saveupdate", MODE_PRIVATE);
+//            btn_date.setText(sharedPreferences.getString("keyUpdate", updateNS));
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("keyUpdate",updateNS);
+            editor.commit();
+
+        }
     }
 
-    private void ngayDuSInh() {
+    private void tinhNgaySinh() {
 //        chonngay();
         btnTinhdusinh = findViewById(R.id.btnTinhdusinh);
 
         btnTinhdusinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String dateDS = edtdate.getText().toString();
-//                String ngayKinh = dataKykinhs.get(position).getKinh();
+                ten = edtname.getText().toString();
+                nick = edtnick.getText().toString();
+
+                edtname.setText(ten);
+                edtnick.setText(nick);
+                Log.e("edt", "name edittext: " + ten + nick );
+                SharedPreferences sharedPreferences = getSharedPreferences("saveTT", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("keyname",ten);
+                editor.putString("keynick",nick);
+                editor.commit();
+
+                String dateDS = btn_date.getText().toString();
                 Log.e("TAG","CHECK ITEM CLICK1: "+dateDS);
                 Intent intent = new Intent(SplashActivity.this, NgayDSActivity.class);
-
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("ngaykinh", dateDS);
-//                intent.putExtra("dateds", dateDS);
+                intent.putExtra("ngayds",timereal);
+                Log.e("ngayds","CHECK ngay ds: "+ timereal);
                 startActivity(intent);
             }
         });
@@ -86,16 +115,22 @@ public class SplashActivity extends AppCompatActivity {
 
         edtname = findViewById(R.id.edtname);
         edtnick = findViewById(R.id.edtnick);
-        edtdate = findViewById(R.id.edtdate);
+        btn_date = findViewById(R.id.btn_date);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("saveTT", MODE_PRIVATE);
+        edtname.setText(sharedPreferences.getString("keyname",""));
+        edtnick.setText(sharedPreferences.getString("keynick", ""));
+
     }
 
     private void setInfo() {
-        edtdate.setOnClickListener(new View.OnClickListener() {
+        btn_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chonngay();
             }
         });
+
 
 
         btnboqua.setOnClickListener(new View.OnClickListener() {
@@ -112,22 +147,22 @@ public class SplashActivity extends AppCompatActivity {
         btnluutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ten = edtname.getText().toString();
-                String nick = edtnick.getText().toString();
-                String date = edtdate.getText().toString();
+
+                ten = edtname.getText().toString();
+                nick = edtnick.getText().toString();
+
 
                 Intent tt = new Intent(SplashActivity.this, MainActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("namett", ten);
-//                bundle.putString("nicktt", nick);
-//                bundle.putString("datett", date);
-
-                tt.putExtra("namett", ten);
-                tt.putExtra("nicktt", nick);
-
-//                tt.putExtra("pushdata", bundle);
-
                 startActivity(tt);
+
+                edtname.setText(ten);
+                edtnick.setText(nick);
+                Log.e("edt", "name edittext: " + ten + nick );
+                SharedPreferences sharedPreferences = getSharedPreferences("saveTT", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("keyname",ten);
+                editor.putString("keynick",nick);
+                editor.commit();
             }
         });
 
@@ -141,16 +176,28 @@ public class SplashActivity extends AppCompatActivity {
         int thang = calendar.get(Calendar.MONTH);
         int nam = calendar.get(Calendar.YEAR);
 
+//        realTime();
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i,i1,i2);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                edtdate.setText(simpleDateFormat.format(calendar.getTime()));
+                btn_date.setText(simpleDateFormat.format(calendar.getTime()));
             }
         }, nam, thang, ngay);
         datePickerDialog.show();
     }
+
+
+    private void realTime() {
+        Date today = new Date(System.currentTimeMillis());
+        SimpleDateFormat timeFormat= new SimpleDateFormat("dd/MM/yyyy");
+        timereal = timeFormat.format(today.getTime());
+        btn_date.setText(timereal);
+    }
+
+
 
     public void xuLiSaoChepCSDL() {
 //       check file database đã tồn tại chưa? nếu chưa thì coppy vào

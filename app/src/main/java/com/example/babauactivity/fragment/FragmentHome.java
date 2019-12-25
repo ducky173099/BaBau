@@ -51,7 +51,7 @@ public class FragmentHome extends Fragment {
     DiaryAdapter diaryAdapter;
     DatabaseHelper databaseHelper;
     TextView txtDiary;
-    TextView namebeyeu, nickbeyeu;
+    TextView namebeyeu, nickbeyeu,txtdatedshome,txtcothai,txtngaydu;
 
 
     String timeDiary;
@@ -124,15 +124,21 @@ public class FragmentHome extends Fragment {
     private  void getDataSplash(View view){
         namebeyeu = view.findViewById(R.id.namebeyeu);
         nickbeyeu = view.findViewById(R.id.nickbeyeu);
+        txtdatedshome = view.findViewById(R.id.txtdatedshome);
+        txtcothai = view.findViewById(R.id.txtcothai);
+        txtngaydu = view.findViewById(R.id.txtngaydu);
 
-        Intent intent = getActivity().getIntent();
+        SharedPreferences sharedCothai = getContext().getSharedPreferences("ngaycothai", MODE_PRIVATE);
+        txtcothai.setText(sharedCothai.getString("keycothai","0"));
+        txtngaydu.setText(sharedCothai.getString("keyngaydu","280"));
 
-        String ten = intent.getStringExtra("namett");
-        String nick = intent.getStringExtra("nicktt");
-        Log.e("ttt", "ten: " + ten);
-        Log.e("ttt", "nick: " + nick);
-        namebeyeu.setText(ten);
-        nickbeyeu.setText(nick);
+        SharedPreferences sharedate = getContext().getSharedPreferences("savedate", MODE_PRIVATE);
+        txtdatedshome.setText(sharedate.getString("initDate","25/12/2019"));
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
+        namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
+        nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
+
     }
 
 

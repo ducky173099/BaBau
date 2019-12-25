@@ -38,7 +38,6 @@
                 android:text="Chọn ngày đầu tiên của kỳ kinh cuối cùng"/>
             <Button
                 android:gravity="left"
-                android:text="29/11/2019"
                 android:id="@+id/btndateds"
                 android:textStyle="bold"
                 android:textSize="14sp"
