@@ -35,61 +35,11 @@
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên của bé"/>
-            <EditText
-                android:id="@+id/edtname"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CBCDD3"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:textColor="#CBCDD3"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nickname của bé"/>
-            <EditText
-                android:id="@+id/edtnick"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CBCDD3"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:textColor="#CBCDD3"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ngày dự sinh"/>
+                android:text="Chọn ngày đầu tiên của kỳ kinh cuối cùng"/>
             <Button
                 android:gravity="left"
                 android:text="29/11/2019"
-                android:id="@+id/edtdate"
+                android:id="@+id/btndateds"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"
@@ -102,18 +52,46 @@
                 android:layout_height="1dp"
                 android:background="#CBCDD3"/>
         </LinearLayout>
-        <Button
-            android:id="@+id/btnTinhdusinh"
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:textColor="#CBCDD3"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chu kỳ kinh"/>
+            <Button
+                android:background="@color/tranparent"
+                android:textColor="#000"
+                android:gravity="left"
+                android:text="20 Ngày"
+                android:id="@+id/btnngayds"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CBCDD3"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txtNDS"
             android:background="@android:color/transparent"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:textSize="17sp"
             android:textColor="#F3CE1919"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TÍNH NGÀY DỰ SINH ?"/>
+            android:text="Ngày dự sinh: 20/09/2020"/>
         <Button
-            android:id="@+id/btnluutt"
+            android:id="@+id/btnupdateds"
             android:background="@drawable/custom_btnmain"
             android:layout_marginTop="17dp"
             android:textColor="#fff"
@@ -121,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/btnboqua"
+            android:id="@+id/btnboquads"
             android:background="@drawable/custom_btnfff"
             android:layout_marginTop="17dp"
             android:textColor="#CBCDD3"

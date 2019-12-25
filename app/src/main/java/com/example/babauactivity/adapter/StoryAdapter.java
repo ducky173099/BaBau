@@ -1,6 +1,7 @@
 package com.example.babauactivity.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.activity.InitStoryActivity;
 import com.example.babauactivity.database.DatabaseHelper;
 import com.example.babauactivity.model.DataStory;
 
@@ -64,7 +66,13 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
                     dataStories.get(position).setStatus(1);
                     databaseHelper.UpdateName(dataStories.get(position).getId(),1);
                 }
+
                 notifyDataSetChanged();
+
+                String ns = holder.txtStory.getText().toString();
+                Intent intent = new Intent(context, InitStoryActivity.class);
+                intent.putExtra("story", ns);
+                context.startActivity(intent);
 
             }
         });

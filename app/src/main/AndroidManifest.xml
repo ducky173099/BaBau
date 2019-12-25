@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.babauactivity">
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,8 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DiaryActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".activity.KyKinhActivity"></activity>
+        <activity android:name=".activity.NgayDSActivity" />
+        <activity
+            android:name=".activity.QuatationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.InitStoryActivity" />
+        <activity
+            android:name=".activity.DiaryActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.NickActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

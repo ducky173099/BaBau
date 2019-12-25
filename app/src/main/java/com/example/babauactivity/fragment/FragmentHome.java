@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.activity.DiaryActivity;
+import com.example.babauactivity.activity.MainActivity;
+import com.example.babauactivity.activity.SplashActivity;
 import com.example.babauactivity.adapter.DiaryAdapter;
 import com.example.babauactivity.database.Database;
 import com.example.babauactivity.database.DatabaseHelper;
@@ -41,12 +44,14 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentHome extends Fragment {
     Button btnNhatky;
+    ImageView imgSetting;
 
     RecyclerView recycler_Diary;
     ArrayList<DataDiary> dataDiaries;
     DiaryAdapter diaryAdapter;
     DatabaseHelper databaseHelper;
     TextView txtDiary;
+    TextView namebeyeu, nickbeyeu;
 
 
     String timeDiary;
@@ -59,33 +64,6 @@ public class FragmentHome extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-//        realTime();
-//        dataDiaries = new ArrayList<>();
-//        databaseHelper = new DatabaseHelper(getContext());
-//        diaryAdapter = new DiaryAdapter(getContext(),dataDiaries,databaseHelper);
-//
-//        if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK && data != null){
-//            contentNhatky = data.getStringExtra("dairy");
-//            anh = data.getByteArrayExtra("anh");
-//
-//
-//        }
-
-//        dataDiaries = databaseHelper.addDiary(timeDiary,contentNhatky,anh);
-
-
-
-//        Log.e("Diaryyyyyy", "data diary: " + contentNhatky );
-//        Log.e("Diary", "data diary: " + contentNhatky );
-//        Log.e("Diary", "time diary: " + timeDiary );
-//        Log.e("Diary", "picture: " + anh );
-//
-//        diaryAdapter.AddDairy(new DataDiary(timeDiary,contentNhatky,anh));
-//
-//        recycler_Diary.setAdapter(diaryAdapter);
-//        diaryAdapter.notifyDataSetChanged();
-//        Log.e("Diary", "data size: " + dataDiaries.size() );
 
 
     }
@@ -102,6 +80,19 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
+        getDataSplash(view);
+
+        imgSetting = view.findViewById(R.id.imgSetting);
+        imgSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SplashActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
 
         recycler_Diary = view.findViewById(R.id.recycler_Diary);
         txtDiary = view.findViewById(R.id.txtDiary);
@@ -128,6 +119,20 @@ public class FragmentHome extends Fragment {
         });
 
         return view;
+    }
+
+    private  void getDataSplash(View view){
+        namebeyeu = view.findViewById(R.id.namebeyeu);
+        nickbeyeu = view.findViewById(R.id.nickbeyeu);
+
+        Intent intent = getActivity().getIntent();
+
+        String ten = intent.getStringExtra("namett");
+        String nick = intent.getStringExtra("nicktt");
+        Log.e("ttt", "ten: " + ten);
+        Log.e("ttt", "nick: " + nick);
+        namebeyeu.setText(ten);
+        nickbeyeu.setText(nick);
     }
 
 

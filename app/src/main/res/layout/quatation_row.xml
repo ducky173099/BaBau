@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/radiuswhile"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_SttQuata"
+                android:layout_centerInParent="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/one"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtContentQuata"
+                android:text="Với mẹ, con mãi là một đứa trẻ"
+                android:textColor="#000"
+                android:textColorHint="#000"
+                android:textSize="18sp"
+                android:background="@color/tranparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/txtNameQuata"
+                    android:textColor="#000"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-Khuyết danh-"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/img_starQuata"
+                android:layout_centerInParent="true"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_star"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

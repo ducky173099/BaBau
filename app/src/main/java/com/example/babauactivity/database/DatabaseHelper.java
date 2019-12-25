@@ -11,6 +11,7 @@ import com.example.babauactivity.model.DataCooking;
 import com.example.babauactivity.model.DataDiary;
 import com.example.babauactivity.model.DataNameSon;
 import com.example.babauactivity.model.DataNickName;
+import com.example.babauactivity.model.DataQuation;
 import com.example.babauactivity.model.DataShop;
 import com.example.babauactivity.model.DataStory;
 
@@ -113,32 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return notes list
         return dataDiaries;
     }
-
-
-//    public ArrayList<DataDiary> insertDiary(String time, String content, byte[] image) {
-//        // get writable database as we want to write data
-//        ArrayList<DataDiary> list= new ArrayList<>();
-//        SQLiteDatabase mDatabase = this.getWritableDatabase();
-//
-//        Cursor cursor = mDatabase.rawQuery("INSERT INTO diary (id,time,content,image) VALUES (null,time, content,image)",null);
-//
-//
-//        ContentValues values = new ContentValues();
-//        // `id` and `timestamp` will be inserted automatically.
-//        // no need to add them
-//        values.put(DataDiary.COLUMN_TIMESTAMP, time);
-//        values.put(DataDiary.COLUMN_CONTENT, content);
-//        values.put(DataDiary.COLUMN_IMAGE, image);
-//
-//        // insert row
-//        long id = mDatabase.insert(DataDiary.TABLE_NAME, null, values);
-//
-//        // close db connection
-//        mDatabase.close();
-//
-//        // return newly inserted row id
-//        return list;
-//    }
 
     public ArrayList<DataNameSon> getAll() {
         Log.d("log", "getAll: " );
@@ -441,6 +416,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dataStories;
     }
 
+    public ArrayList<DataQuation> getQuatation() {
+        ArrayList<DataQuation> dataQuations = new ArrayList<>();
+        SQLiteDatabase mDatabase= getReadableDatabase();
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM quatation",null);
+        cursor.moveToFirst();
+        Log.e("AAA", "getAll: "+cursor.moveToFirst() );
+        while (!cursor.isAfterLast()){
+            int id= cursor.getInt(0);
+            String content = cursor.getString(1);
+            String name = cursor.getString(2);
+            int status = cursor.getInt(3);
+
+            DataQuation data = new DataQuation(id,content,name,status);
+            dataQuations.add(data);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return dataQuations;
+    }
+
+    public ArrayList<DataQuation> getQuataLike() {
+        ArrayList<DataQuation> dataQuations = new ArrayList<>();
+        SQLiteDatabase mDatabase= getReadableDatabase();
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM quatation WHERE status = 1",null);
+        cursor.moveToFirst();
+        Log.e("AAA", "getAll: "+cursor.moveToFirst() );
+        while (!cursor.isAfterLast()){
+            int id= cursor.getInt(0);
+            String content = cursor.getString(1);
+            String name = cursor.getString(2);
+            int status = cursor.getInt(3);
+
+            DataQuation data = new DataQuation(id,content,name,status);
+            dataQuations.add(data);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return dataQuations;
+    }
 
 
 
@@ -453,6 +467,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update("cooking", contentValues, "id=" +id,null);
         db.update("shop", contentValues, "id=" +id,null);
         db.update("story", contentValues, "id=" +id,null);
+        db.update("quatation", contentValues, "id=" +id,null);
         db.close();
     }
 

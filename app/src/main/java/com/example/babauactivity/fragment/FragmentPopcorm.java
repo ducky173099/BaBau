@@ -11,6 +11,7 @@ import com.example.babauactivity.activity.CamnangActivity;
 import com.example.babauactivity.activity.CannangActivity;
 import com.example.babauactivity.activity.CookingActivity;
 import com.example.babauactivity.activity.HoatDongActivity;
+import com.example.babauactivity.activity.QuatationActivity;
 import com.example.babauactivity.activity.ShopActivity;
 import com.example.babauactivity.activity.StoryActivity;
 import com.example.babauactivity.activity.ThucphamActivity;
@@ -62,6 +63,10 @@ public class FragmentPopcorm extends Fragment implements PopcormAdapter.ItemClic
             case 0:
                 Intent story = new Intent(getContext(), StoryActivity.class);
                 startActivity(story);
+                break;
+            case 1:
+                Intent quatation = new Intent(getContext(), QuatationActivity.class);
+                startActivity(quatation);
                 break;
         }
     }

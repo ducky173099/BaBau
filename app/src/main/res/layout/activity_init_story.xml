@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="#F3039268"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:id="@+id/toolbar_initStory"
+        android:layout_height="?attr/actionBarSize">
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginRight="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12 chiến công của HER..."
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/nameStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 chiến công của Hercule - Chương I"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
