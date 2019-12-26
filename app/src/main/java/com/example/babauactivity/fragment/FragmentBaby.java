@@ -67,9 +67,7 @@ public class FragmentBaby extends Fragment implements ItemClick { // buoc 1 impl
         switch (position){
             case 0:
                 Intent intent = new Intent(getContext(), ThaiKiActivity.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-                }
+                startActivity(intent);
                 break;
             case 1:
                 Intent kichthuoc = new Intent(getContext(), KichthuocActivity.class);

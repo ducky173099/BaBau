@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.model.amduong;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,13 +31,13 @@ public class NgayDSActivity extends AppCompatActivity {
     String timeDS;
     String updateNDS;
 
-    String ngay;
-    String thang;
-    String nam;
-
     TextView txtNDS;
 
     public static int day = 0;
+
+    String ngay;
+    String thang;
+    String nam;
 
 
     @Override
@@ -61,7 +62,7 @@ public class NgayDSActivity extends AppCompatActivity {
                 update.putExtra("update",updateNDS);
                 update.putExtra("keyngay",ngay);
                 update.putExtra("keythang",thang);
-                update.putExtra("keynam",nam);
+                update.putExtra("keynam",nam);;
                 Log.e("update", "onClick: " + updateNDS);
                 startActivity(update);
             }
@@ -72,20 +73,32 @@ public class NgayDSActivity extends AppCompatActivity {
 
 
     private void ngayDuSinh(Calendar calendar,int day) {
-
-        Log.e("TAG","CHECK befor PLUS MONTH:"+calendar.get(Calendar.YEAR)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.DAY_OF_MONTH));
         calendar.add(Calendar.MONTH,9);
         calendar.add(Calendar.DAY_OF_MONTH,day);
         txtNDS.setText("Ngày dự sinh: " + calendar.get(Calendar.DAY_OF_MONTH)+ "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
         updateNDS = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+ "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
 
+
+        Log.e("lichds", "ngayDuSinh: " + updateNDS );
+
         ngay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         thang = String.valueOf(calendar.get(Calendar.MONTH));
         nam = String.valueOf(calendar.get(Calendar.YEAR));
+        amduong amduong = new amduong();
+        String dateam = amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[2];
+
+
+        SharedPreferences sharedHomeActivity = getSharedPreferences("licham", MODE_PRIVATE);
+        SharedPreferences.Editor edithome = sharedHomeActivity.edit();
+        edithome.putString("keyDSHome",updateNDS);
+        edithome.putString("keydateamHome",dateam);
+        edithome.commit();
+
 
 
         String ngaycothai = String.valueOf(30 - calendar.get(Calendar.DAY_OF_MONTH));
         int ngaydu = 280 - Integer.parseInt(ngaycothai);
+
         Log.e("ngaycothai", "ngayDuSinh: " + ngaycothai);
         SharedPreferences sharedCothai = getSharedPreferences("ngaycothai", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedCothai.edit();
@@ -112,9 +125,7 @@ public class NgayDSActivity extends AppCompatActivity {
         btndateds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 chonngay();
-
             }
         });
 

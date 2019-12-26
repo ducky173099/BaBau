@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.model.amduong;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,10 +40,17 @@ public class SplashActivity extends AppCompatActivity {
     String thangs;
     String nams;
 
+    String SN;
+    String ST;
+    String SNam;
+
+    String newdateds;
     Button btnluutt,btnboqua,btnTinhdusinh,btn_date;
 
     TextView edtname,edtnick;
 
+    String takeDatenew;
+    String newLunar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,25 +80,46 @@ public class SplashActivity extends AppCompatActivity {
         ngays = getDate.getStringExtra("keyngay");
         thangs = getDate.getStringExtra("keythang");
         nams = getDate.getStringExtra("keynam");
+//        takeDatenew = getDate.getStringExtra("sendDatenew");
+//        btn_date.setText(takeDatenew);
 
-
+//        SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
+//        btn_date.setText(NewDateds.getString("keyNewDS", ""));
 
         Log.e("update", "lay date: " + updateNS);
         if (updateNS==null){
             realTime();
+            SharedPreferences sharedHomeActivity = getSharedPreferences("licham", MODE_PRIVATE);
+            btn_date.setText(sharedHomeActivity.getString("keyDSHome", timereal));
         }else{
             btn_date.setText(updateNS);
             SharedPreferences sharedPreferences = getSharedPreferences("saveupdate", MODE_PRIVATE);
-//            btn_date.setText(sharedPreferences.getString("keyUpdate", updateNS));
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("keyUpdate",updateNS);
             editor.commit();
 
         }
+
+
+        if (newLunar == null){
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat sn = new SimpleDateFormat("dd");
+            SimpleDateFormat st = new SimpleDateFormat("MM");
+            SimpleDateFormat snam = new SimpleDateFormat("yyyy");
+            ngays = sn.format(calendar.getTime());
+            thangs = st.format(calendar.getTime());
+            nams = snam.format(calendar.getTime());
+
+            Log.e("ngayamnew", "onCreate: " + ngays );
+
+            amduong amduong = new amduong();
+            newLunar = amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[2];
+
+        }
     }
 
     private void tinhNgaySinh() {
-//        chonngay();
+
         btnTinhdusinh = findViewById(R.id.btnTinhdusinh);
 
         btnTinhdusinh.setOnClickListener(new View.OnClickListener() {
@@ -122,10 +151,10 @@ public class SplashActivity extends AppCompatActivity {
     private void initView() {
         btnboqua = findViewById(R.id.btnboqua);
         btnluutt = findViewById(R.id.btnluutt);
-
         edtname = findViewById(R.id.edtname);
         edtnick = findViewById(R.id.edtnick);
         btn_date = findViewById(R.id.btn_date);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("saveTT", MODE_PRIVATE);
         edtname.setText(sharedPreferences.getString("keyname",""));
@@ -138,6 +167,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chonngay();
+
             }
         });
 
@@ -146,7 +176,6 @@ public class SplashActivity extends AppCompatActivity {
         btnboqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 t = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(t);
                 finish();
@@ -161,22 +190,38 @@ public class SplashActivity extends AppCompatActivity {
                 ten = edtname.getText().toString();
                 nick = edtnick.getText().toString();
 
-                Intent tt = new Intent(SplashActivity.this, MainActivity.class);
-                tt.putExtra("putngay",ngays);
-                tt.putExtra("putthang",thangs);
-                tt.putExtra("putnam",nams);
-                tt.putExtra("putlichduong",updateNS);
-                startActivity(tt);
-
                 edtname.setText(ten);
                 edtnick.setText(nick);
                 Log.e("edt", "name edittext: " + ten + nick );
+
+
+                SharedPreferences sharedupdate = getSharedPreferences("saveupdate", MODE_PRIVATE);
+                SharedPreferences.Editor editorupdate = sharedupdate.edit();
+                editorupdate.putString("keyUpdate",updateNS);
+                editorupdate.commit();
+
                 SharedPreferences sharedPreferences = getSharedPreferences("saveTT", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("keyname",ten);
                 editor.putString("keynick",nick);
-
                 editor.commit();
+
+                String getnewdate = btn_date.getText().toString();
+                Log.e("newlunar", "onClick: " + newLunar );
+
+                Intent tt = new Intent(SplashActivity.this, MainActivity.class);
+                tt.putExtra("putlichduong",updateNS);
+                tt.putExtra("putnewdate",getnewdate);
+                tt.putExtra("putnewLunar",newLunar);
+                Log.e("newdate", "onClick: " + getnewdate );
+                startActivity(tt);
+
+                SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
+                SharedPreferences.Editor editnewdateds = NewDateds.edit();
+                editnewdateds.putString("keyNewDS",newdateds);
+                editnewdateds.putString("keyNewLunar",newLunar);
+                editnewdateds.commit();
+
             }
         });
 
@@ -190,14 +235,28 @@ public class SplashActivity extends AppCompatActivity {
         int thang = calendar.get(Calendar.MONTH);
         int nam = calendar.get(Calendar.YEAR);
 
-//        realTime();
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i,i1,i2);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                btn_date.setText(simpleDateFormat.format(calendar.getTime()));
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                newdateds = simpleDateFormat.format(calendar.getTime());
+//                btn_date.setText(newdateds);
+
+                SimpleDateFormat sn = new SimpleDateFormat("dd");
+                SimpleDateFormat st = new SimpleDateFormat("MM");
+                SimpleDateFormat snam = new SimpleDateFormat("yyyy");
+                SN = sn.format(calendar.getTime());
+                ST = st.format(calendar.getTime());
+                SNam = snam.format(calendar.getTime());
+
+                newdateds = SN + "/" + ST + "/" + SNam;
+                amduong amduong = new amduong();
+                newLunar = amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[2];
+
+                btn_date.setText(newdateds);
+
+
             }
         }, nam, thang, ngay);
         datePickerDialog.show();
@@ -208,8 +267,22 @@ public class SplashActivity extends AppCompatActivity {
         Date today = new Date(System.currentTimeMillis());
         SimpleDateFormat timeFormat= new SimpleDateFormat("dd/MM/yyyy");
         timereal = timeFormat.format(today.getTime());
-        btn_date.setText(timereal);
+
+//        btn_date.setText(timereal);
     }
+
+//    private void licAmreal(){
+//        Date today = new Date(System.currentTimeMillis());
+//        SimpleDateFormat sn = new SimpleDateFormat("dd");
+//        SimpleDateFormat st = new SimpleDateFormat("MM");
+//        SimpleDateFormat snam = new SimpleDateFormat("yyyy");
+//        SN = sn.format(today.getTime());
+//        ST = st.format(today.getTime());
+//        SNam = snam.format(today.getTime());
+//
+//        amduong amduong = new amduong();
+//
+//    }
 
 
 

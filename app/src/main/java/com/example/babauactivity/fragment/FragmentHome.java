@@ -62,6 +62,13 @@ public class FragmentHome extends Fragment {
     String contentNhatky;
     byte[] anh;
 
+    String Ngay;
+    String month;
+    String year;
+
+    String newdateds;
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -82,6 +89,7 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
+
         getDataSplash(view);
 
         imgSetting = view.findViewById(R.id.imgSetting);
@@ -89,6 +97,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SplashActivity.class);
+//                intent.putExtra("sendDatenew",newdateds);
                 startActivity(intent);
 
             }
@@ -135,41 +144,29 @@ public class FragmentHome extends Fragment {
         txtcothai.setText(sharedCothai.getString("keycothai","0"));
         txtngaydu.setText(sharedCothai.getString("keyngaydu","280"));
 
-        SharedPreferences sharedate = getContext().getSharedPreferences("savedate", MODE_PRIVATE);
-//        txtdatedshome.setText(sharedate.getString("initDate","25/12/2019"));
+//
+        SharedPreferences NewDateds = getContext().getSharedPreferences("newDS", MODE_PRIVATE);
+        txtlicham.setText(NewDateds.getString("keyNewLunar","25/12/2019"));
+
+        SharedPreferences sharedHomeActivity = getContext().getSharedPreferences("licham", MODE_PRIVATE);
+        txtdatedshome.setText(sharedHomeActivity.getString("keyDSHome","25/12/2019"));
+//        txtlicham.setText(sharedHomeActivity.getString("keydateamHome","25/12/2019"));
 
         Intent intent = getActivity().getIntent();
-        SimpleDateFormat s4 = new SimpleDateFormat("dd");
-        int Ngay = Integer.parseInt(intent.getStringExtra("putngay"));
-        int month = Integer.parseInt(intent.getStringExtra("putthang"));
-        int year = Integer.parseInt(intent.getStringExtra("putnam"));
-        String lichduong = intent.getStringExtra("putlichduong");
+        newdateds = intent.getStringExtra("putnewdate");
+        txtdatedshome.setText(newdateds);
 
-        txtdatedshome.setText(lichduong);
-
-        amduong am = new amduong();
-        txtlicham.setText(am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
-        Log.e("TAG","CHECK LICH AM:"+am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
-
-//        Calendar calendar = Calendar.getInstance();
-//        amduong am = new amduong();
-//        SimpleDateFormat s4 = new SimpleDateFormat("dd");
-//
-//        int Ngay = Integer.parseInt(s4.format(calendar.getTime()));
-//
-//        SimpleDateFormat s5 = new SimpleDateFormat("MM");
-//        int month = Integer.parseInt(s5.format(calendar.getTime()));
-//
-//
-//        SimpleDateFormat s6 = new SimpleDateFormat("yyyy");
-//        int year = Integer.parseInt(s6.format(calendar.getTime()));
-//        Log.e("TAG","NGAY DUONG: "+Ngay+"/"+month+"/"+year);
-//        Log.e("TAG","CHECK LICH AM:"+am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
+        SharedPreferences sharedsavelich = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedsavelich.edit();
+        editor.putString("keyngayam", String.valueOf(Ngay));
+        editor.putString("keythangam", String.valueOf(month));
+        editor.putString("keynamam", String.valueOf(year));
+        editor.commit();
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
         namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
         nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
-//        txtdatedshome.setText(sharedate.getString("keyds","25/12/2019"));
+
 
     }
 
