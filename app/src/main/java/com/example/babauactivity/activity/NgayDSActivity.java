@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.ChineseCalendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,10 @@ public class NgayDSActivity extends AppCompatActivity {
     String timeDS;
     String updateNDS;
 
+    String ngay;
+    String thang;
+    String nam;
+
     TextView txtNDS;
 
     public static int day = 0;
@@ -45,6 +50,7 @@ public class NgayDSActivity extends AppCompatActivity {
         chuKyKinh();
         updateNDS();
 
+
     }
 
     private void updateNDS() {
@@ -53,6 +59,9 @@ public class NgayDSActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent update = new Intent(NgayDSActivity.this, SplashActivity.class);
                 update.putExtra("update",updateNDS);
+                update.putExtra("keyngay",ngay);
+                update.putExtra("keythang",thang);
+                update.putExtra("keynam",nam);
                 Log.e("update", "onClick: " + updateNDS);
                 startActivity(update);
             }
@@ -70,6 +79,11 @@ public class NgayDSActivity extends AppCompatActivity {
         txtNDS.setText("Ngày dự sinh: " + calendar.get(Calendar.DAY_OF_MONTH)+ "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
         updateNDS = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+ "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
 
+        ngay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        thang = String.valueOf(calendar.get(Calendar.MONTH));
+        nam = String.valueOf(calendar.get(Calendar.YEAR));
+
+
         String ngaycothai = String.valueOf(30 - calendar.get(Calendar.DAY_OF_MONTH));
         int ngaydu = 280 - Integer.parseInt(ngaycothai);
         Log.e("ngaycothai", "ngayDuSinh: " + ngaycothai);
@@ -78,6 +92,9 @@ public class NgayDSActivity extends AppCompatActivity {
         editor.putString("keycothai",ngaycothai);
         editor.putString("keyngaydu", String.valueOf(ngaydu));
         editor.commit();
+
+
+
 
 
     }

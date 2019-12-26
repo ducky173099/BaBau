@@ -24,6 +24,7 @@ import com.example.babauactivity.database.Database;
 import com.example.babauactivity.database.DatabaseHelper;
 import com.example.babauactivity.model.DataDiary;
 import com.example.babauactivity.model.DataPicturebaby;
+import com.example.babauactivity.model.amduong;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,6 +32,7 @@ import java.lang.reflect.Type;
 import java.sql.Blob;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import androidx.annotation.NonNull;
@@ -51,7 +53,7 @@ public class FragmentHome extends Fragment {
     DiaryAdapter diaryAdapter;
     DatabaseHelper databaseHelper;
     TextView txtDiary;
-    TextView namebeyeu, nickbeyeu,txtdatedshome,txtcothai,txtngaydu;
+    TextView namebeyeu, nickbeyeu,txtdatedshome,txtcothai,txtngaydu,txtlicham;
 
 
     String timeDiary;
@@ -127,17 +129,47 @@ public class FragmentHome extends Fragment {
         txtdatedshome = view.findViewById(R.id.txtdatedshome);
         txtcothai = view.findViewById(R.id.txtcothai);
         txtngaydu = view.findViewById(R.id.txtngaydu);
+        txtlicham = view.findViewById(R.id.txtlicham);
 
         SharedPreferences sharedCothai = getContext().getSharedPreferences("ngaycothai", MODE_PRIVATE);
         txtcothai.setText(sharedCothai.getString("keycothai","0"));
         txtngaydu.setText(sharedCothai.getString("keyngaydu","280"));
 
         SharedPreferences sharedate = getContext().getSharedPreferences("savedate", MODE_PRIVATE);
-        txtdatedshome.setText(sharedate.getString("initDate","25/12/2019"));
+//        txtdatedshome.setText(sharedate.getString("initDate","25/12/2019"));
+
+        Intent intent = getActivity().getIntent();
+        SimpleDateFormat s4 = new SimpleDateFormat("dd");
+        int Ngay = Integer.parseInt(intent.getStringExtra("putngay"));
+        int month = Integer.parseInt(intent.getStringExtra("putthang"));
+        int year = Integer.parseInt(intent.getStringExtra("putnam"));
+        String lichduong = intent.getStringExtra("putlichduong");
+
+        txtdatedshome.setText(lichduong);
+
+        amduong am = new amduong();
+        txtlicham.setText(am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
+        Log.e("TAG","CHECK LICH AM:"+am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
+
+//        Calendar calendar = Calendar.getInstance();
+//        amduong am = new amduong();
+//        SimpleDateFormat s4 = new SimpleDateFormat("dd");
+//
+//        int Ngay = Integer.parseInt(s4.format(calendar.getTime()));
+//
+//        SimpleDateFormat s5 = new SimpleDateFormat("MM");
+//        int month = Integer.parseInt(s5.format(calendar.getTime()));
+//
+//
+//        SimpleDateFormat s6 = new SimpleDateFormat("yyyy");
+//        int year = Integer.parseInt(s6.format(calendar.getTime()));
+//        Log.e("TAG","NGAY DUONG: "+Ngay+"/"+month+"/"+year);
+//        Log.e("TAG","CHECK LICH AM:"+am.Solar2Lunar(Ngay,month,year)[0]+"/"+am.Solar2Lunar(Ngay,month,year)[1]+"/"+am.Solar2Lunar(Ngay,month,year)[2]);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
         namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
         nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
+//        txtdatedshome.setText(sharedate.getString("keyds","25/12/2019"));
 
     }
 

@@ -35,6 +35,10 @@ public class SplashActivity extends AppCompatActivity {
     String ten;
     String nick;
 
+    String ngays;
+    String thangs;
+    String nams;
+
     Button btnluutt,btnboqua,btnTinhdusinh,btn_date;
 
     TextView edtname,edtnick;
@@ -65,6 +69,12 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent getDate = getIntent();
         updateNS = getDate.getStringExtra("update");
+        ngays = getDate.getStringExtra("keyngay");
+        thangs = getDate.getStringExtra("keythang");
+        nams = getDate.getStringExtra("keynam");
+
+
+
         Log.e("update", "lay date: " + updateNS);
         if (updateNS==null){
             realTime();
@@ -151,8 +161,11 @@ public class SplashActivity extends AppCompatActivity {
                 ten = edtname.getText().toString();
                 nick = edtnick.getText().toString();
 
-
                 Intent tt = new Intent(SplashActivity.this, MainActivity.class);
+                tt.putExtra("putngay",ngays);
+                tt.putExtra("putthang",thangs);
+                tt.putExtra("putnam",nams);
+                tt.putExtra("putlichduong",updateNS);
                 startActivity(tt);
 
                 edtname.setText(ten);
@@ -162,6 +175,7 @@ public class SplashActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("keyname",ten);
                 editor.putString("keynick",nick);
+
                 editor.commit();
             }
         });

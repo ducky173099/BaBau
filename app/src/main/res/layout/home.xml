@@ -200,6 +200,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="(Âm lịch:"/>
                             <TextView
+                                android:id="@+id/txtlicham"
                                 android:textSize="13sp"
                                 android:textColor="#A4A5AA"
                                 android:layout_width="wrap_content"
