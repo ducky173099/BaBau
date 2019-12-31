@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.fragment.FragmentHome;
 import com.example.babauactivity.model.amduong;
 
 import java.io.File;
@@ -51,6 +52,10 @@ public class SplashActivity extends AppCompatActivity {
 
     String takeDatenew;
     String newLunar;
+    String lichamfirs;
+    String getnewdate;
+    String sendSolar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,21 +82,39 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent getDate = getIntent();
         updateNS = getDate.getStringExtra("update");
+        lichamfirs = getDate.getStringExtra("lichamfirs");
+        sendSolar = getDate.getStringExtra("sendsolar");
         ngays = getDate.getStringExtra("keyngay");
         thangs = getDate.getStringExtra("keythang");
         nams = getDate.getStringExtra("keynam");
-//        takeDatenew = getDate.getStringExtra("sendDatenew");
-//        btn_date.setText(takeDatenew);
 
-//        SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
-//        btn_date.setText(NewDateds.getString("keyNewDS", ""));
 
-        Log.e("update", "lay date: " + updateNS);
-        if (updateNS==null){
+        Log.e("haha", "get solar: " + sendSolar );
+        SharedPreferences NewDatesolar = getSharedPreferences("setSolar", MODE_PRIVATE);
+        btn_date.setText(NewDatesolar.getString("keySolar","25/12/2019"));
+
+//        SharedPreferences.Editor editsolar = NewDatesolar.edit();
+//        editsolar.putString("keySolar",sendSolar);
+//        editsolar.commit();
+
+        if (sendSolar != null){
+            Log.e("haha", "get solar khong null : " + sendSolar );
+            btn_date.setText(NewDatesolar.getString("keySolar","25/12/2019"));
+            btn_date.setText(sendSolar);
+
+        }
+//        btn_date.setText(sendSolar);
+
+
+
+
+        if (updateNS == null){
             realTime();
             SharedPreferences sharedHomeActivity = getSharedPreferences("licham", MODE_PRIVATE);
             btn_date.setText(sharedHomeActivity.getString("keyDSHome", timereal));
-        }else{
+        }else if (updateNS != null && sendSolar == null){
+            Log.e("haha", "get solar NULL : " + sendSolar );
+
             btn_date.setText(updateNS);
             SharedPreferences sharedPreferences = getSharedPreferences("saveupdate", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -101,21 +124,8 @@ public class SplashActivity extends AppCompatActivity {
         }
 
 
-        if (newLunar == null){
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat sn = new SimpleDateFormat("dd");
-            SimpleDateFormat st = new SimpleDateFormat("MM");
-            SimpleDateFormat snam = new SimpleDateFormat("yyyy");
-            ngays = sn.format(calendar.getTime());
-            thangs = st.format(calendar.getTime());
-            nams = snam.format(calendar.getTime());
 
-            Log.e("ngayamnew", "onCreate: " + ngays );
 
-            amduong amduong = new amduong();
-            newLunar = amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngays),Integer.parseInt(thangs),Integer.parseInt(nams))[2];
-
-        }
     }
 
     private void tinhNgaySinh() {
@@ -176,7 +186,10 @@ public class SplashActivity extends AppCompatActivity {
         btnboqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String datebq = btn_date.getText().toString();
+
                 t = new Intent(SplashActivity.this, MainActivity.class);
+                t.putExtra("putnewdate",datebq);
                 startActivity(t);
                 finish();
 
@@ -186,6 +199,7 @@ public class SplashActivity extends AppCompatActivity {
         btnluutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 ten = edtname.getText().toString();
                 nick = edtnick.getText().toString();
@@ -206,8 +220,21 @@ public class SplashActivity extends AppCompatActivity {
                 editor.putString("keynick",nick);
                 editor.commit();
 
-                String getnewdate = btn_date.getText().toString();
+
+
+
+
+                getnewdate = btn_date.getText().toString();
                 Log.e("newlunar", "onClick: " + newLunar );
+
+                SharedPreferences NewDatesolar = getSharedPreferences("setSolar", MODE_PRIVATE);
+                SharedPreferences.Editor editsolar = NewDatesolar.edit();
+                editsolar.putString("keySolar",sendSolar);
+                editsolar.commit();
+
+
+
+
 
                 Intent tt = new Intent(SplashActivity.this, MainActivity.class);
                 tt.putExtra("putlichduong",updateNS);
@@ -216,11 +243,25 @@ public class SplashActivity extends AppCompatActivity {
                 Log.e("newdate", "onClick: " + getnewdate );
                 startActivity(tt);
 
-                SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
-                SharedPreferences.Editor editnewdateds = NewDateds.edit();
-                editnewdateds.putString("keyNewDS",newdateds);
-                editnewdateds.putString("keyNewLunar",newLunar);
-                editnewdateds.commit();
+                if (newLunar == null){
+                    SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
+                    SharedPreferences.Editor editnewdateds = NewDateds.edit();
+                    editnewdateds.putString("keyNewDS",newdateds);
+//                    editnewdateds.putString("keyNewLunar",newLunar);
+                    editnewdateds.putString("keyNewLunar",lichamfirs);
+                    editnewdateds.putString("keyNewSolar",getnewdate);
+                    editnewdateds.commit();
+                } else {
+                    SharedPreferences NewDateds = getSharedPreferences("newDS", MODE_PRIVATE);
+                    SharedPreferences.Editor editnewdateds = NewDateds.edit();
+                    editnewdateds.putString("keyNewDS",newdateds);
+                    editnewdateds.putString("keyNewLunar",newLunar);
+                    editnewdateds.putString("keyNewSolar",getnewdate);
+//                    editnewdateds.putString("keyNewLunar",lichamfirs);
+                    editnewdateds.commit();
+                }
+
+
 
             }
         });
@@ -254,8 +295,17 @@ public class SplashActivity extends AppCompatActivity {
                 amduong amduong = new amduong();
                 newLunar = amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(SN),Integer.parseInt(ST),Integer.parseInt(SNam))[2];
 
+
+
+
+
+
                 btn_date.setText(newdateds);
 
+                SharedPreferences NewDatesolar = getSharedPreferences("setSolar", MODE_PRIVATE);
+                SharedPreferences.Editor editsolar = NewDatesolar.edit();
+                editsolar.putString("keySolar",newdateds);
+                editsolar.commit();
 
             }
         }, nam, thang, ngay);

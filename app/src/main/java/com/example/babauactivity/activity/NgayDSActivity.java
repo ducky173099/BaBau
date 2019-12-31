@@ -39,6 +39,8 @@ public class NgayDSActivity extends AppCompatActivity {
     String thang;
     String nam;
 
+    String dateam;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +60,10 @@ public class NgayDSActivity extends AppCompatActivity {
         btnupdateds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent update = new Intent(NgayDSActivity.this, SplashActivity.class);
                 update.putExtra("update",updateNDS);
+                update.putExtra("lichamfirs",dateam);
                 update.putExtra("keyngay",ngay);
                 update.putExtra("keythang",thang);
                 update.putExtra("keynam",nam);;
@@ -85,13 +89,14 @@ public class NgayDSActivity extends AppCompatActivity {
         thang = String.valueOf(calendar.get(Calendar.MONTH));
         nam = String.valueOf(calendar.get(Calendar.YEAR));
         amduong amduong = new amduong();
-        String dateam = amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[2];
+        dateam = amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[2];
 
 
         SharedPreferences sharedHomeActivity = getSharedPreferences("licham", MODE_PRIVATE);
         SharedPreferences.Editor edithome = sharedHomeActivity.edit();
         edithome.putString("keyDSHome",updateNDS);
         edithome.putString("keydateamHome",dateam);
+        edithome.putString("keyNewLunar",dateam);
         edithome.commit();
 
 

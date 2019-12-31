@@ -20,6 +20,7 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+
     }
 }
 
@@ -46,4 +47,6 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.shinelw:library:1.0.1'
+    implementation 'com.mikhaellopez:circularprogressbar:1.0.0'
+    implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 }

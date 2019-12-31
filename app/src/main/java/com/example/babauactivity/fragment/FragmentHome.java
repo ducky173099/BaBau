@@ -3,8 +3,11 @@ package com.example.babauactivity.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.babauactivity.R;
@@ -25,8 +29,11 @@ import com.example.babauactivity.database.DatabaseHelper;
 import com.example.babauactivity.model.DataDiary;
 import com.example.babauactivity.model.DataPicturebaby;
 import com.example.babauactivity.model.amduong;
+import com.github.lzyzsd.circleprogress.ArcProgress;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+import com.shinelw.library.ColorArcProgressBar;
 
 import java.lang.reflect.Type;
 import java.sql.Blob;
@@ -37,6 +44,7 @@ import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,6 +77,11 @@ public class FragmentHome extends Fragment {
     String newdateds;
 
 
+    int pStatus = 0;
+    private Handler handler = new Handler();
+    TextView tv;
+
+    ArcProgress arc_progress;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -91,13 +104,16 @@ public class FragmentHome extends Fragment {
         View view = inflater.inflate(R.layout.home, container, false);
 
         getDataSplash(view);
+        proGressBar(view);
 
         imgSetting = view.findViewById(R.id.imgSetting);
         imgSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String solarchild = txtdatedshome.getText().toString();
                 Intent intent = new Intent(getContext(), SplashActivity.class);
 //                intent.putExtra("sendDatenew",newdateds);
+                intent.putExtra("sendsolar",solarchild);
                 startActivity(intent);
 
             }
@@ -129,7 +145,19 @@ public class FragmentHome extends Fragment {
             }
         });
 
+
+
+
         return view;
+    }
+
+    private void proGressBar(View view) {
+        arc_progress = view.findViewById(R.id.arc_progress);
+
+    }
+    public void onSelect() {
+        arc_progress.setProgress((int)(Math.random() * 100));
+
     }
 
     private  void getDataSplash(View view){
@@ -144,12 +172,25 @@ public class FragmentHome extends Fragment {
         txtcothai.setText(sharedCothai.getString("keycothai","0"));
         txtngaydu.setText(sharedCothai.getString("keyngaydu","280"));
 
-//
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
+        namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
+        nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
+
+
+
+
+        SharedPreferences sharedsavesolar = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
+        txtdatedshome.setText(sharedsavesolar.getString("keysolar",""));
+
+
+
+
+
         SharedPreferences NewDateds = getContext().getSharedPreferences("newDS", MODE_PRIVATE);
         txtlicham.setText(NewDateds.getString("keyNewLunar","25/12/2019"));
 
         SharedPreferences sharedHomeActivity = getContext().getSharedPreferences("licham", MODE_PRIVATE);
-        txtdatedshome.setText(sharedHomeActivity.getString("keyDSHome","25/12/2019"));
+//        txtdatedshome.setText(sharedHomeActivity.getString("keyDSHome","25/12/2019"));
 //        txtlicham.setText(sharedHomeActivity.getString("keydateamHome","25/12/2019"));
 
         Intent intent = getActivity().getIntent();
@@ -161,11 +202,9 @@ public class FragmentHome extends Fragment {
         editor.putString("keyngayam", String.valueOf(Ngay));
         editor.putString("keythangam", String.valueOf(month));
         editor.putString("keynamam", String.valueOf(year));
+        editor.putString("keysolar", newdateds);
         editor.commit();
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
-        namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
-        nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
 
 
     }
