@@ -76,10 +76,7 @@ public class FragmentHome extends Fragment {
 
     String newdateds;
 
-
-    int pStatus = 0;
-    private Handler handler = new Handler();
-    TextView tv;
+    String dateLunar;
 
     ArcProgress arc_progress;
 
@@ -168,42 +165,26 @@ public class FragmentHome extends Fragment {
         txtngaydu = view.findViewById(R.id.txtngaydu);
         txtlicham = view.findViewById(R.id.txtlicham);
 
-        SharedPreferences sharedCothai = getContext().getSharedPreferences("ngaycothai", MODE_PRIVATE);
-        txtcothai.setText(sharedCothai.getString("keycothai","0"));
-        txtngaydu.setText(sharedCothai.getString("keyngaydu","280"));
-
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
-        namebeyeu.setText(sharedPreferences.getString("keyname","Tên bé Yêu"));
-        nickbeyeu.setText(sharedPreferences.getString("keynick","Nickname bé"));
+        SharedPreferences sharedSaveInfo = getContext().getSharedPreferences("saveInfo", MODE_PRIVATE);
+        txtdatedshome.setText(sharedSaveInfo.getString("getTextDate",""));
+        namebeyeu.setText(sharedSaveInfo.getString("keyname","Tên bé Yêu"));
+        nickbeyeu.setText(sharedSaveInfo.getString("keynick","Nickname bé"));
 
 
+        String dateSolar = sharedSaveInfo.getString("getTextDate","");
+        String [] arrSolar = dateSolar.split("/");
+//        Log.e("arrSolar", "getDataSplash: " +arrSolar[0] + "/" + arrSolar[1] + "/"  + arrSolar[2]  );
 
+        if (arrSolar != null){
+            String dateCothai = String.valueOf(30 - Integer.parseInt(arrSolar[0]));
+            String ngaydu = String.valueOf(280 - Integer.parseInt(dateCothai));
+            txtcothai.setText(dateCothai);
+            txtngaydu.setText(ngaydu);
+            amduong amduong = new amduong();
+            dateLunar = amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[2];
 
-        SharedPreferences sharedsavesolar = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
-        txtdatedshome.setText(sharedsavesolar.getString("keysolar",""));
-
-
-
-
-
-        SharedPreferences NewDateds = getContext().getSharedPreferences("newDS", MODE_PRIVATE);
-        txtlicham.setText(NewDateds.getString("keyNewLunar","25/12/2019"));
-
-        SharedPreferences sharedHomeActivity = getContext().getSharedPreferences("licham", MODE_PRIVATE);
-//        txtdatedshome.setText(sharedHomeActivity.getString("keyDSHome","25/12/2019"));
-//        txtlicham.setText(sharedHomeActivity.getString("keydateamHome","25/12/2019"));
-
-        Intent intent = getActivity().getIntent();
-        newdateds = intent.getStringExtra("putnewdate");
-        txtdatedshome.setText(newdateds);
-
-        SharedPreferences sharedsavelich = getContext().getSharedPreferences("saveTT", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedsavelich.edit();
-        editor.putString("keyngayam", String.valueOf(Ngay));
-        editor.putString("keythangam", String.valueOf(month));
-        editor.putString("keynamam", String.valueOf(year));
-        editor.putString("keysolar", newdateds);
-        editor.commit();
+            txtlicham.setText(dateLunar);
+        }
 
 
 

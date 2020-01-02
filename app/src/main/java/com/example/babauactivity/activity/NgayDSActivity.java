@@ -63,11 +63,6 @@ public class NgayDSActivity extends AppCompatActivity {
 
                 Intent update = new Intent(NgayDSActivity.this, SplashActivity.class);
                 update.putExtra("update",updateNDS);
-                update.putExtra("lichamfirs",dateam);
-                update.putExtra("keyngay",ngay);
-                update.putExtra("keythang",thang);
-                update.putExtra("keynam",nam);;
-                Log.e("update", "onClick: " + updateNDS);
                 startActivity(update);
             }
         });
@@ -84,20 +79,6 @@ public class NgayDSActivity extends AppCompatActivity {
 
 
         Log.e("lichds", "ngayDuSinh: " + updateNDS );
-
-        ngay = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-        thang = String.valueOf(calendar.get(Calendar.MONTH));
-        nam = String.valueOf(calendar.get(Calendar.YEAR));
-        amduong amduong = new amduong();
-        dateam = amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(ngay),Integer.parseInt(thang),Integer.parseInt(nam))[2];
-
-
-        SharedPreferences sharedHomeActivity = getSharedPreferences("licham", MODE_PRIVATE);
-        SharedPreferences.Editor edithome = sharedHomeActivity.edit();
-        edithome.putString("keyDSHome",updateNDS);
-        edithome.putString("keydateamHome",dateam);
-        edithome.putString("keyNewLunar",dateam);
-        edithome.commit();
 
 
 

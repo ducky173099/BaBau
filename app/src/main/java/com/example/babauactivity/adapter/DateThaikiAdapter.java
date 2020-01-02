@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.fragment.FragThaiki;
@@ -24,9 +25,9 @@ public class DateThaikiAdapter extends RecyclerView.Adapter<DateThaikiAdapter.Vi
     Context context;
     int row_index =0;
 
-    clickRecycler clickRecycler; // buoc 2 interface
+    private ItemClick clickRecycler; // buoc 2 interface
 
-    public void setClickRecycler(DateThaikiAdapter.clickRecycler clickRecycler) { // buoc 3 interface
+    public void setClickRecycler(ItemClick clickRecycler) {
         this.clickRecycler = clickRecycler;
     }
 
@@ -49,26 +50,43 @@ public class DateThaikiAdapter extends RecyclerView.Adapter<DateThaikiAdapter.Vi
         holder.txtstt.setText(dataDatetk.get(position).getStt());
         holder.txtDatetk.setText(dataDatetk.get(position).getDatetk());
 
-        holder.linear_thaiki.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickRecycler.ClickDatetk(position);
                 row_index = position;
-
-//                clickRecycler.onClickItem(position); // buoc 4 interface
                 notifyDataSetChanged();
             }
         });
 
+
         if(row_index == position){
             holder.linear_thaiki.setBackgroundColor(Color.parseColor("#8F016D69"));
-//            holder.txtstt.setTextColor(Color.parseColor("#ffffff"));
         }
-        else
-        {
+        else {
             holder.linear_thaiki.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-//            holder.txtstt.setTextColor(Color.parseColor("#000000"));
         }
 
+//        holder.linear_thaiki.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                row_index = position;
+//
+////                clickRecycler.onClickItem(position); // buoc 4 interface
+//                notifyDataSetChanged();
+//            }
+//        });
+//
+//        if(row_index == position){
+//            holder.linear_thaiki.setBackgroundColor(Color.parseColor("#8F016D69"));
+////            holder.txtstt.setTextColor(Color.parseColor("#ffffff"));
+//        }
+//        else
+//        {
+//            holder.linear_thaiki.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+////            holder.txtstt.setTextColor(Color.parseColor("#000000"));
+//        }
+//
 
 
 
@@ -86,15 +104,13 @@ public class DateThaikiAdapter extends RecyclerView.Adapter<DateThaikiAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             txtstt = itemView.findViewById(R.id.txtstt);
             txtDatetk = itemView.findViewById(R.id.txtdatetk);
             linear_thaiki = itemView.findViewById(R.id.linear_thaiki);
         }
     }
 
-    // buoc 1 tao ham interface
-    public interface clickRecycler{
-        void onClickItem(int position);
+    public interface ItemClick{
+        void ClickDatetk(int position);
     }
 }

@@ -3,10 +3,12 @@ package com.example.babauactivity.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.DateThaikiAdapter;
+import com.example.babauactivity.adapter.ItemClick;
 import com.example.babauactivity.fragment.FragThaiki;
 import com.example.babauactivity.fragment.FragmentHome;
 import com.example.babauactivity.model.DataDatetk;
@@ -25,7 +28,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapter.clickRecycler{
+public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapter.ItemClick {
     Toolbar toolbarThaiki;
     TabLayout tabLayout;
     private ViewPager viewPager_tk;
@@ -44,7 +47,7 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
 
     TextView txt2d, txt3d, txtmau, txtvideo;
 
-
+    Fragment selectFragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +114,10 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
 
         dateThaikiAdapter = new DateThaikiAdapter(dataDatetk, this);
         recyclerViewDatetk.setAdapter(dateThaikiAdapter);
+
+        dateThaikiAdapter.setClickRecycler(this);
+
+
     }
 
     @Override
@@ -149,31 +156,33 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
         txtvideo = findViewById(R.id.txtvideo);
 
 
-
-
-//        viewPager_tk = findViewById(R.id.viewpager_tk);
-//        mvpdemo.setAdapter(new ThaikiAdapter(getSupportFragmentManager()));
-//        TabLayout tabLayout = findViewById(R.id.tablayout_tk);
-//        tabLayout.setupWithViewPager(mvpdemo);
-
-//        thaikiAdapter = new ThaikiAdapter(getSupportFragmentManager());
-//        thaikiAdapter.addFragment(new FragThaiki(), "Tab 1");
-//        thaikiAdapter.addFragment(new FragThaiki(), "Tab 2");
-//        thaikiAdapter.addFragment(new FragThaiki(), "Tab 3");
-//        viewPager_tk.setAdapter(thaikiAdapter);
-//        tabLayout.setupWithViewPager(viewPager_tk);
-//        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-//        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-//        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-
-
     }
+
 
     @Override
-    public void onClickItem(int position) { // buoc 5 interface
-        Toast.makeText(this, "recycler" + position, Toast.LENGTH_SHORT).show();
+    public void ClickDatetk(int position) {
+        Toast.makeText(this, "sfse", Toast.LENGTH_SHORT).show();
+        switch (position){
+            case 0:
+                selectFragment = new FragThaiki();
+                break;
+            case 1:
+                selectFragment = new FragThaiki();
+                break;
+            case 2:
+                selectFragment = new FragThaiki();
+                break;
+            case 3:
+                selectFragment = new FragThaiki();
+                break;
+            case 4:
+                selectFragment = new FragThaiki();
+                break;
+            case 5:
+                selectFragment = new FragThaiki();
+                break;
+        }
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_cont,selectFragment).commit();
     }
-
-
 }

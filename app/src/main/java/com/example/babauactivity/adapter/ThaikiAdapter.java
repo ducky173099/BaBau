@@ -2,6 +2,7 @@ package com.example.babauactivity.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,13 +53,20 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
         holder.txtContentmom.setText(dataChiTietThaiKi.get(position).getContentmom());
         holder.txtContentlk.setText(dataChiTietThaiKi.get(position).getContentlk());
 
+
         if (pos == position){
             holder.txt2d.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     holder.imgSieuam.setImageResource(R.drawable.ic_bell);
                     holder.txt2d.setTextColor(Color.WHITE);
-                    holder.txt2d.setBackgroundColor(Color.RED);
+                    holder.txt2d.setBackgroundResource(R.drawable.borderliftred);
+                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setBackgroundResource(R.drawable.borderred);
+                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setBackgroundResource(R.drawable.borderred);
+                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setBackgroundResource(R.drawable.borderright);
                 }
             });
             holder.txt3d.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +75,12 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                     holder.imgSieuam.setImageResource(R.drawable.ic_book);
                     holder.txt3d.setTextColor(Color.WHITE);
                     holder.txt3d.setBackgroundColor(Color.RED);
+                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setBackgroundResource(R.drawable.borderleft);
+                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setBackgroundResource(R.drawable.borderred);
+                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setBackgroundResource(R.drawable.borderright);
 
                 }
             });
@@ -76,6 +90,12 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                     holder.imgSieuam.setImageResource(R.drawable.ic_stork);
                     holder.txtmau.setTextColor(Color.WHITE);
                     holder.txtmau.setBackgroundColor(Color.RED);
+                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setBackgroundResource(R.drawable.borderleft);
+                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setBackgroundResource(R.drawable.borderred);
+                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setBackgroundResource(R.drawable.borderright);
 
                 }
             });
@@ -83,8 +103,14 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
                     holder.imgSieuam.setImageResource(R.drawable.ic_continuous);
+                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setBackgroundResource(R.drawable.borderleft);
+                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setBackgroundResource(R.drawable.borderred);
+                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setBackgroundResource(R.drawable.borderred);
                     holder.txtvideo.setTextColor(Color.WHITE);
-                    holder.txtvideo.setBackgroundColor(Color.RED);
+                    holder.txtvideo.setBackgroundResource(R.drawable.borderrightred);
 
                 }
             });
@@ -123,4 +149,6 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
             txtContentlk = itemView.findViewById(R.id.txtcontentlk);
         }
     }
+
+
 }
