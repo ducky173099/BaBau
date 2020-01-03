@@ -61,9 +61,6 @@ public class HoatDongActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_hoatdong, new FragKhongan()).commit();
             }
         });
-
-
-
     }
 
     private void setToolbar() {

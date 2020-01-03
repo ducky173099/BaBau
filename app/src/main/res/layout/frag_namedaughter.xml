@@ -27,7 +27,7 @@
                 android:src="@drawable/ic_search"/>
         </RelativeLayout>
         <EditText
-            android:id="@+id/edtSearchList"
+            android:id="@+id/edtSearchnamedauter"
             android:layout_gravity="center"
             android:hint="Gõ để tìm kiếm (hỗ trợ không dấu)"
             android:textColor="#000"

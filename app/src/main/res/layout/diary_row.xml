@@ -56,7 +56,5 @@
                     android:id="@+id/imgDiary"/>
             </LinearLayout>
         </RelativeLayout>
-
     </LinearLayout>
-
 </LinearLayout>

@@ -1,10 +1,13 @@
 package com.example.babauactivity.fragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.NameSonAdapter;
@@ -20,11 +23,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FragmentNameLike extends Fragment {
     ArrayList<DataNameSon> dataNameSon;
+    ArrayList<DataNameSon> dataNameSonList;
 
     NameSonAdapter nameSonAdapter;
     RecyclerView recyclerViewListlike;
     DatabaseHelper databaseHelper;
 
+    EditText edtSearchnamelike;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -38,6 +43,9 @@ public class FragmentNameLike extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_namelike, container, false);
 
+        edtSearchnamelike = view.findViewById(R.id.edtSearchnamelike);
+        dataNameSonList = new ArrayList<>();
+
         databaseHelper = new DatabaseHelper(getContext());
         recyclerViewListlike = view.findViewById(R.id.recycler_listlike);
 
@@ -47,6 +55,40 @@ public class FragmentNameLike extends Fragment {
         nameSonAdapter = new NameSonAdapter(getContext());
         nameSonAdapter.setDataNameSon(dataNameSon);
         recyclerViewListlike.setAdapter(nameSonAdapter);
+
+        edtSearchnamelike.addTextChangedListener(new TextWatcher() { // Search Lits
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                fillterSearch(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+            private void fillterSearch(String text){
+                dataNameSonList.clear();
+                Log.e("TAG","CHECK DATA SIZE:"+dataNameSon.size());
+                for (DataNameSon data: dataNameSon){
+
+//                    if (data.getNameson().equalsIgnoreCase(text)){
+//                        dataNameSonList.add(data);
+//                    }
+                    if (data.getNameson().toUpperCase().contains(text.toUpperCase())){
+                        Log.e("TAG","CHECK DATA add:");
+                        dataNameSonList.add(data);
+                    }
+                }
+                Log.e("TAG","CHECK:"+dataNameSonList.size());
+                nameSonAdapter.setDataNameSon(dataNameSonList);
+            }
+        });
 
         return view;
     }

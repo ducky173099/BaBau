@@ -87,6 +87,7 @@ public class FragmentNameSon extends BaseFragment<MainActivity> implements NameS
 
             @Override
             public void afterTextChanged(Editable editable) {
+                Log.e("search", "After TextChanged: " );
 
             }
 
@@ -105,6 +106,7 @@ public class FragmentNameSon extends BaseFragment<MainActivity> implements NameS
                 }
                 Log.e("TAG","CHECK:"+dataNameSonList.size());
                 adapter.setDataNameSon(dataNameSonList);
+                adapter.notifyDataSetChanged();
             }
         });
 

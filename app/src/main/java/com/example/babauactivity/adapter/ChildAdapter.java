@@ -45,11 +45,11 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
     // buoc 5
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtnamechild.setText(dataChild.get(position).getTenchild());
-//        holder.imgHinhchild.setImageResource(dataChild.get(position).getHinhchild());
-        Picasso.get()
-                .load(dataChild.get(position).getHinhchild())
-                .placeholder(R.drawable.loading)
-                .into(holder.imgHinhchild);
+        holder.imgHinhchild.setImageResource(dataChild.get(position).getHinhchild());
+//        Picasso.get()
+//                .load(dataChild.get(position).getHinhchild())
+//                .placeholder(R.drawable.loading)
+//                .into(holder.imgHinhchild);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

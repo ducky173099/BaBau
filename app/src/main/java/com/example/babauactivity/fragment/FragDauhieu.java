@@ -1,5 +1,6 @@
 package com.example.babauactivity.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.activity.InitCamnangActivity;
 import com.example.babauactivity.adapter.ChuanbiAdapter;
 import com.example.babauactivity.model.DataChuanbi;
 
@@ -96,5 +98,7 @@ public class FragDauhieu extends Fragment implements ChuanbiAdapter.ItemClick {
     @Override
     public void ClickChuanbi(int position) {
         Toast.makeText(getContext(), "dấu hiệu " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), InitCamnangActivity.class);
+        startActivity(intent);
     }
 }

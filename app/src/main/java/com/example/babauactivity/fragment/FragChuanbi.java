@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
+import com.example.babauactivity.activity.InitCamnangActivity;
 import com.example.babauactivity.activity.ItemPictureActivity;
 import com.example.babauactivity.adapter.ChuanbiAdapter;
 import com.example.babauactivity.model.DataChuanbi;
@@ -99,7 +100,7 @@ public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { 
     @Override
     public void ClickChuanbi(int position) { // buco 7 interface
         Toast.makeText(getContext(), "số tt cẩm nang " + position, Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this,class);
-//        startActivity(intent);
+        Intent intent = new Intent(getContext(), InitCamnangActivity.class);
+        startActivity(intent);
     }
 }

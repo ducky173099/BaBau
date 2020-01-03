@@ -22,6 +22,7 @@ import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.DateThaikiAdapter;
 import com.example.babauactivity.adapter.ItemClick;
 import com.example.babauactivity.fragment.FragThaiki;
+import com.example.babauactivity.fragment.FragThaikiSecond;
 import com.example.babauactivity.fragment.FragmentHome;
 import com.example.babauactivity.model.DataDatetk;
 import com.google.android.material.tabs.TabLayout;
@@ -167,7 +168,7 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
                 selectFragment = new FragThaiki();
                 break;
             case 1:
-                selectFragment = new FragThaiki();
+                selectFragment = new FragThaikiSecond();
                 break;
             case 2:
                 selectFragment = new FragThaiki();

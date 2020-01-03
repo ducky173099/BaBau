@@ -224,6 +224,7 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         }, nam, thang, ngay);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
         datePickerDialog.show();
     }
 

@@ -31,16 +31,19 @@ public class FragKhongan extends Fragment {
         recycler_listkhongan = view.findViewById(R.id.recycler_listkhongan);
         dataHoatdongs = new ArrayList<>();
 
-        dataHoatdongs.add(new DataHoatdong(R.drawable.gravestone,"Đi dự đám ma","Không nên","Bà bầu nên tránh"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.high_heel,"Đi giày cao gót","Không nên","Mẹ không nên mang giày cao gót khi mang thai nhé"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.no_smoking,"Hút thuốc lá","Không nên","Bà bầu hít thuốc lá dễ dẫn đến sinh non, thai chết lưu"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.handrail,"Lên xuống cầu thang","Không nên","Bà bầu nên tránh"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.diving,"Leo núi, lặn","Không nên","bà bầu nên tránh"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.gravestone,"Đi dự đám ma","Không nên","Bà bầu nên tránh"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.high_heel,"Đi giày cao gót","Không nên","Mẹ không nên mang giày cao gót khi mang thai nhé"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.no_smoking,"Hút thuốc lá","Không nên","Bà bầu hít thuốc lá dễ dẫn đến sinh non, thai chết lưu"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.handrail,"Lên xuống cầu thang","Không nên","Bà bầu nên tránh"));
-        dataHoatdongs.add(new DataHoatdong(R.drawable.diving,"Leo núi, lặn","Không nên","bà bầu nên tránh"));
+        for (int i = 0; i <20 ; i++) {
+            dataHoatdongs.add(new DataHoatdong(R.drawable.mushroom,"Đi dự đám ma","Không nên" ,"Bà bầu nên tránh"));
+        }
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.gravestone,"Đi dự đám ma","Không nên","Bà bầu nên tránh"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.high_heel,"Đi giày cao gót","Không nên","Mẹ không nên mang giày cao gót khi mang thai nhé"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.no_smoking,"Hút thuốc lá","Không nên","Bà bầu hít thuốc lá dễ dẫn đến sinh non, thai chết lưu"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.handrail,"Lên xuống cầu thang","Không nên","Bà bầu nên tránh"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.diving,"Leo núi, lặn","Không nên","bà bầu nên tránh"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.gravestone,"Đi dự đám ma","Không nên","Bà bầu nên tránh"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.high_heel,"Đi giày cao gót","Không nên","Mẹ không nên mang giày cao gót khi mang thai nhé"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.no_smoking,"Hút thuốc lá","Không nên","Bà bầu hít thuốc lá dễ dẫn đến sinh non, thai chết lưu"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.handrail,"Lên xuống cầu thang","Không nên","Bà bầu nên tránh"));
+//        dataHoatdongs.add(new DataHoatdong(R.drawable.diving,"Leo núi, lặn","Không nên","bà bầu nên tránh"));
 
         hoatdongAdapter = new HoatdongAdapter(getContext(), dataHoatdongs);
         recycler_listkhongan.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));

@@ -29,7 +29,7 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
     ArrayList<DataNameSon> dataNameSon;
     ArrayList<DataNameSon> dataNameSonList;
 
-    EditText edtSearchList;
+    EditText edtSearchnamedauter;
     NameSonAdapter adapter;
 
     DatabaseHelper databaseHelper;
@@ -58,7 +58,7 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
 
 
         recyclerViewNameDauter = findViewById(R.id.recycler_listDauter);
-        edtSearchList = findViewById(R.id.edtSearchList);
+        edtSearchnamedauter = findViewById(R.id.edtSearchnamedauter);
 
 
         dataNameSon = databaseHelper.getDauter();
@@ -69,7 +69,7 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
         recyclerViewNameDauter.setAdapter(adapter);
         recyclerViewNameDauter.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
 
-        edtSearchList.addTextChangedListener(new TextWatcher() { // Search Lits
+        edtSearchnamedauter.addTextChangedListener(new TextWatcher() { // Search Lits
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
