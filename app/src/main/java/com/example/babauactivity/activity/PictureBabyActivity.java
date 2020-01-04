@@ -84,5 +84,6 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
         intent.putExtra("key_img",dataPicturebabies);
         intent.putExtra("pos", position);
         startActivity(intent);
+
     }
 }

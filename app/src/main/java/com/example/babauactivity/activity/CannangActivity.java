@@ -72,7 +72,7 @@ public class CannangActivity extends AppCompatActivity implements CannangAdapter
 
     private void realTime() {
         Date today = new Date(System.currentTimeMillis());
-        SimpleDateFormat timeFormat= new SimpleDateFormat("hh:mm dd/MM/yyyy");
+        SimpleDateFormat timeFormat= new SimpleDateFormat("hh:mm - dd/MM/yyyy");
         rtime = timeFormat.format(today.getTime());
     }
 

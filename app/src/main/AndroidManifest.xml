@@ -48,7 +48,7 @@
         <activity
             android:name=".activity.CamnangActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.ItemPictureActivity" />
+        <activity android:name=".activity.ItemPictureActivity" android:theme="@style/Theme.AppCompat.Translucent"/>
         <activity android:name=".activity.PictureBabyActivity" />
         <activity android:name=".activity.FeetActivity" />
         <activity android:name=".activity.InjectActivity" />

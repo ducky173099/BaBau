@@ -9,6 +9,7 @@
     android:layout_height="150dp">
 
         <ImageView
+        android:background="@drawable/darius_image"
         android:layout_gravity="center"
         android:id="@+id/imgBeyeu"
         android:layout_width="150dp"

@@ -54,7 +54,7 @@ public class CannangAdapter extends RecyclerView.Adapter<CannangAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "del can nag" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "del can nag" + position, Toast.LENGTH_SHORT).show();
                 dataCannangs.remove(position);
                 notifyDataSetChanged();
             }
