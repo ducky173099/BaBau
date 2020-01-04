@@ -48,7 +48,7 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
 
     TextView txt2d, txt3d, txtmau, txtvideo;
 
-    Fragment selectFragment = null;
+    Fragment selectFragment = new FragThaiki();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,13 +174,25 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
                 selectFragment = new FragThaiki();
                 break;
             case 3:
-                selectFragment = new FragThaiki();
+                selectFragment = new FragThaikiSecond();
                 break;
             case 4:
                 selectFragment = new FragThaiki();
                 break;
             case 5:
+                selectFragment = new FragThaikiSecond();
+                break;
+            case 6:
                 selectFragment = new FragThaiki();
+                break;
+            case 7:
+                selectFragment = new FragThaikiSecond();
+                break;
+            case 8:
+                selectFragment = new FragThaiki();
+                break;
+            case 9:
+                selectFragment = new FragThaikiSecond();
                 break;
         }
 

@@ -63,7 +63,7 @@ public class FragmentMom extends Fragment implements ItemClick, MomAdapter.ItemC
 
     @Override
     public void ClickMom(int position) {
-        Toast.makeText(getContext(), "mom " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "mom " + position, Toast.LENGTH_SHORT).show();
 
         switch (position){
             case 0:

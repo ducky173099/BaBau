@@ -67,7 +67,7 @@ public class FragmentHome extends Fragment {
     DiaryAdapter diaryAdapter;
     DatabaseHelper databaseHelper;
     TextView txtDiary;
-    TextView namebeyeu, nickbeyeu,txtdatedshome,txtcothai,txtngaydu,txtlicham,txtWeekdate,txtDaydate,txtWeightoffWeek,txtSizeoffWeek;
+    TextView namebeyeu, nickbeyeu,txtdatedshome,txtcothai,txtngaydu,txtlicham,txtWeekdate,txtDaydate,txtWeightoffWeek,txtSizeoffWeek,luuhanhtrinh;
 
     long getDiff,getDaysDiff;
     RelativeLayout selectchitiettk;
@@ -85,7 +85,6 @@ public class FragmentHome extends Fragment {
     String newdateds;
 
     String dateLunar;
-
 
     ArcProgress arc_progress;
 
@@ -111,6 +110,7 @@ public class FragmentHome extends Fragment {
 
         getDataSplash(view);
         SelectTK(view);
+        luuhanhtrinh = view.findViewById(R.id.luuhanhtrinh);
 
         imgSetting = view.findViewById(R.id.imgSetting);
         imgSetting.setOnClickListener(new View.OnClickListener() {
@@ -135,8 +135,17 @@ public class FragmentHome extends Fragment {
         databaseHelper = new DatabaseHelper(getContext());
 
         diaryAdapter = new DiaryAdapter(getContext(), databaseHelper.getAllDatas(), databaseHelper);
-
         recycler_Diary.setAdapter(diaryAdapter);
+
+        if (databaseHelper.getAllDatas() !=null && databaseHelper.getAllDatas().size() > 0){
+            recycler_Diary.setVisibility(View.VISIBLE);
+            luuhanhtrinh.setVisibility(View.GONE);
+
+        } else {
+            recycler_Diary.setVisibility(View.GONE);
+            luuhanhtrinh.setVisibility(View.VISIBLE);
+        }
+
         diaryAdapter.notifyDataSetChanged();
 
 
@@ -146,7 +155,6 @@ public class FragmentHome extends Fragment {
             public void onClick(View view) {
                 Intent nhatky = new Intent(getContext(), DiaryActivity.class);
                 startActivityForResult(nhatky,REQUEST_CODE_EDIT);
-
 
             }
         });

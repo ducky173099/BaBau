@@ -26,11 +26,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:background="@drawable/borderleft"
+                    android:background="@drawable/borderliftred"
                     android:padding="10dp"
                     android:id="@+id/txt2d"
                     android:gravity="center"
-                    android:textColor="#26990A"
+                    android:textColor="#fff"
                     android:textSize="12sp"
                     android:text="2D"
                     android:layout_weight="1"

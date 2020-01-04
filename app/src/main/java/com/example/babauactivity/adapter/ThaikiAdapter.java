@@ -58,14 +58,14 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
             holder.txt2d.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    holder.imgSieuam.setImageResource(R.drawable.ic_bell);
+                    holder.imgSieuam.setImageResource(R.drawable.sieuam1);
                     holder.txt2d.setTextColor(Color.WHITE);
                     holder.txt2d.setBackgroundResource(R.drawable.borderliftred);
-                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt3d.setBackgroundResource(R.drawable.borderred);
-                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setTextColor(Color.parseColor("#26990A"));
                     holder.txtmau.setBackgroundResource(R.drawable.borderred);
-                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setTextColor(Color.parseColor("#26990A"));
                     holder.txtvideo.setBackgroundResource(R.drawable.borderright);
                 }
             });
@@ -75,11 +75,11 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                     holder.imgSieuam.setImageResource(R.drawable.ic_book);
                     holder.txt3d.setTextColor(Color.WHITE);
                     holder.txt3d.setBackgroundColor(Color.RED);
-                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt2d.setBackgroundResource(R.drawable.borderleft);
-                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setTextColor(Color.parseColor("#26990A"));
                     holder.txtmau.setBackgroundResource(R.drawable.borderred);
-                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setTextColor(Color.parseColor("#26990A"));
                     holder.txtvideo.setBackgroundResource(R.drawable.borderright);
 
                 }
@@ -90,11 +90,11 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                     holder.imgSieuam.setImageResource(R.drawable.ic_stork);
                     holder.txtmau.setTextColor(Color.WHITE);
                     holder.txtmau.setBackgroundColor(Color.RED);
-                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt2d.setBackgroundResource(R.drawable.borderleft);
-                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt3d.setBackgroundResource(R.drawable.borderred);
-                    holder.txtvideo.setTextColor(Color.GREEN);
+                    holder.txtvideo.setTextColor(Color.parseColor("#26990A"));
                     holder.txtvideo.setBackgroundResource(R.drawable.borderright);
 
                 }
@@ -103,11 +103,11 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                 @Override
                 public void onClick(View view) {
                     holder.imgSieuam.setImageResource(R.drawable.ic_continuous);
-                    holder.txt2d.setTextColor(Color.GREEN);
+                    holder.txt2d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt2d.setBackgroundResource(R.drawable.borderleft);
-                    holder.txt3d.setTextColor(Color.GREEN);
+                    holder.txt3d.setTextColor(Color.parseColor("#26990A"));
                     holder.txt3d.setBackgroundResource(R.drawable.borderred);
-                    holder.txtmau.setTextColor(Color.GREEN);
+                    holder.txtmau.setTextColor(Color.parseColor("#26990A"));
                     holder.txtmau.setBackgroundResource(R.drawable.borderred);
                     holder.txtvideo.setTextColor(Color.WHITE);
                     holder.txtvideo.setBackgroundResource(R.drawable.borderrightred);

@@ -62,7 +62,7 @@ public class FragmentBaby extends Fragment implements ItemClick { // buoc 1 impl
 
     @Override
     public void onClickItem(int position) { // buoc 3 interface
-        Toast.makeText(getContext(), "ok ngon" + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "ok ngon" + position, Toast.LENGTH_SHORT).show();
 
         switch (position){
             case 0:

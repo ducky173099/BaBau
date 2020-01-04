@@ -57,7 +57,7 @@ public class FragmentPopcorm extends Fragment implements PopcormAdapter.ItemClic
 
     @Override
     public void ClickPopcorm(int position) {
-        Toast.makeText(getContext(), "popcorm " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "popcorm " + position, Toast.LENGTH_SHORT).show();
 
         switch (position){
             case 0:
