@@ -79,7 +79,7 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
 
     @Override
     public void ClickPicture(int position) { // buco 7 interface
-        Toast.makeText(this, "anh " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "anh " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ItemPictureActivity.class);
         intent.putExtra("key_img",dataPicturebabies);
         intent.putExtra("pos", position);

@@ -33,18 +33,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <EditText
-                android:gravity="top"
-                android:layout_above="@+id/botDiary"
                 android:id="@+id/edtDiary"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_above="@+id/botDiary"
+                android:layout_marginBottom="2dp"
                 android:background="@android:color/transparent"
+                android:gravity="top"
                 android:hint="Hôm nay bạn thế nào?"
-                android:textColorHint="#000"
-                android:paddingTop="20dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="15dp"/>
+                android:paddingTop="20dp"
+                android:paddingRight="15dp"
+                android:textColorHint="#000" />
+
             <RelativeLayout
                 android:id="@+id/botDiary"
                 android:paddingRight="15dp"

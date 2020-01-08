@@ -30,9 +30,9 @@ public class FragThaiki extends Fragment {
 
         ArrayList<DataChiTietThaiKi> dataChiTietThaiKi = new ArrayList<>();
         dataChiTietThaiKi.add(new DataChiTietThaiKi(R.drawable.sieuam1,"2D","3D","Màu","Video",
-                R.drawable.ic_toddler,"Em bé","Em bé vẫn chỉ là 1 tia sáng le lói tỏng mắt.",
-                R.drawable.ic_woman,"Người mẹ","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                R.drawable.ic_bell,"Lời khuyên","It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."));
+                R.drawable.init_toddler,"Em bé","Em bé vẫn chỉ là 1 tia sáng le lói tỏng mắt.",
+                R.drawable.init_pregnant,"Người mẹ","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                R.drawable.init_bell,"Lời khuyên","It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy."));
 
 
         ThaikiAdapter thaikiAdapter = new ThaikiAdapter(getContext(), dataChiTietThaiKi);

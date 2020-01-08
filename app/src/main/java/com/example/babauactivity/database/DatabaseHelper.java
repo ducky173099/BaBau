@@ -2,11 +2,14 @@ package com.example.babauactivity.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteBlobTooBigException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.babauactivity.activity.SplashActivity;
 import com.example.babauactivity.model.DataCooking;
 import com.example.babauactivity.model.DataDiary;
 import com.example.babauactivity.model.DataNameSon;
@@ -15,6 +18,10 @@ import com.example.babauactivity.model.DataQuation;
 import com.example.babauactivity.model.DataShop;
 import com.example.babauactivity.model.DataStory;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DB_NAME ="babau.db";
 
     private static String database_name = "diary_db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String TABLE_NAME = "diary";
 
     private static final String KEY_ID = "id";
@@ -31,10 +38,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CONTENT = "content";
     private static final String KEY_IMAGE = "image";
 
+    Intent t;
+    String db_name = "babau.db";
+    String db_path = "/databases/";
+    InputStream is;
+    private Context mContext;
+
     public DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, DATABASE_VERSION);
 //        super(context, database_name, null, 1);
+        this.mContext = context;
     }
+
+
 
 
 
@@ -50,12 +66,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+//        onCreate(db);
+        if(newVersion>oldVersion){
+            copyCSDLtuAssetvaoApp();
+        }
+
     }
 
 
-    public long insertDiary(String time, String content, byte[] image){
+    public long insertDiary(String time, String content, String image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(KEY_TIME,time);
@@ -77,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int id= cursor.getInt(0);
             String time = cursor.getString(0);
             String content = cursor.getString(1);
-            byte[] image = cursor.getBlob(2);
+            String image = cursor.getString(2);
 
             DataDiary data = new DataDiary(id,time,content,image);
             dataDiaries.add(data);
@@ -97,6 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
+
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -104,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 dataDiary.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
                 dataDiary.setTime(cursor.getString(cursor.getColumnIndex(KEY_TIME)));
                 dataDiary.setContent(cursor.getString(cursor.getColumnIndex(KEY_CONTENT)));
-                dataDiary.setImgDiary(cursor.getBlob(cursor.getColumnIndex(KEY_IMAGE)));
+                dataDiary.setImgDiary(cursor.getString(cursor.getColumnIndex(KEY_IMAGE)));
 
                 dataDiaries.add(dataDiary);
             } while (cursor.moveToNext());
@@ -114,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return notes list
         return dataDiaries;
     }
+
 
     public ArrayList<DataNameSon> getAll() {
         Log.d("log", "getAll: " );
@@ -476,4 +498,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL(sql);
     }
 
+
+    public void copyCSDLtuAssetvaoApp() {
+        try {
+            this.is = mContext.getAssets().open(this.db_name);
+            File f = new File(mContext.getApplicationInfo().dataDir + this.db_path);
+            if (!f.exists()) {
+                f.mkdir();
+            }
+            OutputStream os = new FileOutputStream(getUrl());
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int length = this.is.read(buffer);
+                if (length > 0) {
+                    os.write(buffer, 0, length);
+                }
+                else {
+                    os.flush();
+                    os.close();
+                    this.is.close();
+                    return;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("loi:" + e.toString());
+        }
+    }
+
+    public String getUrl() {
+        return mContext.getApplicationInfo().dataDir + this.db_path + this.db_name;
+    }
 }

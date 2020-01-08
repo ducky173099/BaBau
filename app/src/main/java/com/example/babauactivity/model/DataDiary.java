@@ -8,27 +8,13 @@ import java.util.stream.Stream;
 import androidx.annotation.NonNull;
 
 public class DataDiary {
-//    public static final String TABLE_NAME = "diary";
-//
-//    public static final String COLUMN_ID = "id";
-//    public static final String COLUMN_TIMESTAMP = "time";
-//    public static final String COLUMN_CONTENT = "content";
-//    public static final String COLUMN_IMAGE = "image";
 
     private int id;
     private String Time;
     private String Content;
-    private byte[] ImgDiary;
+    private String ImgDiary;
 
-//    public static final String CREATE_TABLE =
-//            "CREATE TABLE " + TABLE_NAME + "("
-//                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-//                    + COLUMN_TIMESTAMP + " TEXT,"
-//                    + COLUMN_CONTENT + " TEXT,"
-//                    + COLUMN_IMAGE + " BLOB"
-//                    + ")";
-
-    public DataDiary(int id, String time, String content, byte[] imgDiary) {
+    public DataDiary(int id, String time, String content, String imgDiary) {
         this.id = id;
         Time = time;
         Content = content;
@@ -38,7 +24,6 @@ public class DataDiary {
     public DataDiary() {
 
     }
-
 
     public int getId() {
         return id;
@@ -64,11 +49,11 @@ public class DataDiary {
         Content = content;
     }
 
-    public byte[] getImgDiary() {
+    public String getImgDiary() {
         return ImgDiary;
     }
 
-    public void setImgDiary(byte[] imgDiary) {
+    public void setImgDiary(String imgDiary) {
         ImgDiary = imgDiary;
     }
 }

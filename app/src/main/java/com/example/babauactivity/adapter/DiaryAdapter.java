@@ -3,6 +3,8 @@ package com.example.babauactivity.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,11 @@ import com.example.babauactivity.R;
 import com.example.babauactivity.database.DatabaseHelper;
 import com.example.babauactivity.model.DataCannang;
 import com.example.babauactivity.model.DataDiary;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
@@ -57,9 +63,25 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
         holder.txtDiary.setText(dataDiaries.get(position).getContent());
 
         if (dataDiaries.get(position).getImgDiary() != null){
-            byte[] hinhanh = dataDiaries.get(position).getImgDiary();
-            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh,0, hinhanh.length);
+//            byte[] hinhanh = new byte[10000];
+
+            Uri hinhanh = Uri.parse(dataDiaries.get(position).getImgDiary());
+            InputStream inputStream = null;
+            try {
+                inputStream = context.getContentResolver().openInputStream(hinhanh);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             holder.imgDiary.setImageBitmap(bitmap);
+
+            Log.e("logimg", "onBindViewHolder: " + hinhanh );
+//            Picasso.get().load(hinhanh).into(holder.imgDiary);
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh,0, hinhanh.length);
+//            holder.imgDiary.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 120, 120, false));
+        } else {
+            holder.imgDiary.setVisibility(View.GONE);
         }
 
     }
