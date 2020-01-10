@@ -42,7 +42,6 @@ public class HoatdongAdapter extends RecyclerView.Adapter<HoatdongAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (dataHoatdongs.get(position) !=null){
             holder.imghoatdong.setImageResource(dataHoatdongs.get(position).getHinh());
-//            holder.imghoatdong.setImageResource(R.drawable.ic_book);
             holder.txtDesc.setText(dataHoatdongs.get(position).getDesc());
             holder.txtVal.setText(dataHoatdongs.get(position).getVal());
             holder.txtContent.setText(dataHoatdongs.get(position).getContent());

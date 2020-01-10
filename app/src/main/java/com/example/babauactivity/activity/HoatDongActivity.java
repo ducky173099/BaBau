@@ -67,6 +67,7 @@ public class HoatDongActivity extends AppCompatActivity {
         toolbar_hoatdong = findViewById(R.id.toolbar_hoatdong);
         setSupportActionBar(toolbar_hoatdong);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_hoatdong.setNavigationIcon(R.drawable.back24);
         toolbar_hoatdong.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,5 +1,6 @@
 package com.example.babauactivity.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +13,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
@@ -20,6 +23,7 @@ import com.example.babauactivity.model.DataPicturebaby;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PictureBabyActivity extends AppCompatActivity implements PicturebabyAdapter.ItemClick { // buco 6 interface alt + emter
     Toolbar toolbarPicture;
@@ -27,6 +31,8 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
     ArrayList<DataPicturebaby> dataPicturebabies;
     PicturebabyAdapter picturebabyAdapter;
 
+    TextView tittletoolbar_camnang;
+    ImageView back_tb_camnang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +53,6 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
         for (int i = 0; i <= 20 ; i++) {
             dataPicturebabies.add(new DataPicturebaby(R.drawable.mushroom));
         }
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb2));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb3));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb4));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb5));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb6));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb));
-//        dataPicturebabies.add(new DataPicturebaby(R.drawable.bb2));
 
         picturebabyAdapter = new PicturebabyAdapter(getApplicationContext(), dataPicturebabies);
         recyclerViewPicture.setAdapter(picturebabyAdapter);
@@ -63,23 +61,47 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
     }
 
     private void setToolbar() {
-        toolbarPicture = findViewById(R.id.toolbar_picturebaby);
+//        toolbarPicture = findViewById(R.id.toolbar_picturebaby);
+//
+//        setSupportActionBar(toolbarPicture);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        toolbarPicture.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
-        setSupportActionBar(toolbarPicture);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        toolbarPicture.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar, null);
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT);
+        getSupportActionBar().setCustomView(view, layoutParams);
+        Toolbar parent = (Toolbar) view.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        tittletoolbar_camnang = view.findViewById(R.id.tittletoolbar_camnang);
+        back_tb_camnang = view.findViewById(R.id.back_tb_camnang);
+        tittletoolbar_camnang.setText("Ảnh Đẹp Bé Yêu");
+        back_tb_camnang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+
     }
 
 
     @Override
     public void ClickPicture(int position) { // buco 7 interface
-//        Toast.makeText(this, "anh " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ItemPictureActivity.class);
         intent.putExtra("key_img",dataPicturebabies);
         intent.putExtra("pos", position);

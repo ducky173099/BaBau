@@ -1,5 +1,6 @@
 package com.example.babauactivity.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.CannangAdapter;
@@ -19,6 +21,7 @@ import com.example.babauactivity.model.DataFeet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class CannangActivity extends AppCompatActivity implements CannangAdapter.ItemClick {
     Toolbar toolbar_cannang;
@@ -31,7 +34,8 @@ public class CannangActivity extends AppCompatActivity implements CannangAdapter
 
     public String rtime;
 
-
+    TextView tittletoolbar_camnang;
+    ImageView back_tb_camnang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,18 +82,40 @@ public class CannangActivity extends AppCompatActivity implements CannangAdapter
 
 
     private void setToolbar() {
-        toolbar_cannang = findViewById(R.id.toolbar_cannang);
+//        toolbar_cannang = findViewById(R.id.toolbar_cannang);
+//
+//        setSupportActionBar(toolbar_cannang);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        toolbar_cannang.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
-        setSupportActionBar(toolbar_cannang);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        toolbar_cannang.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar, null);
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT);
+        getSupportActionBar().setCustomView(view, layoutParams);
+        Toolbar parent = (Toolbar) view.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        tittletoolbar_camnang = view.findViewById(R.id.tittletoolbar_camnang);
+        back_tb_camnang = view.findViewById(R.id.back_tb_camnang);
+        tittletoolbar_camnang.setText("Theo dõi cân nặng Bà Bầu");
+        back_tb_camnang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
 
     }
 

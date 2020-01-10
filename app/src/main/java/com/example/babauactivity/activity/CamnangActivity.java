@@ -40,6 +40,7 @@ public class CamnangActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar_camnang);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_camnang.setNavigationIcon(R.drawable.back24);
         toolbar_camnang.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

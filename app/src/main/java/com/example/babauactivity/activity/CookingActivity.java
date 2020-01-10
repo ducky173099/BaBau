@@ -65,7 +65,7 @@ public class CookingActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar_pregnancy);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar_pregnancy.setNavigationIcon(R.drawable.back24);
         toolbar_pregnancy.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -44,7 +44,6 @@ public class NickActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.e("AAA", "onPageSelected: sssssssssssss");
                 FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
                 tf.detach(tabNickAdapter.getItem(position));
                 tf.attach(tabNickAdapter.getItem(position));
@@ -64,6 +63,7 @@ public class NickActivity extends AppCompatActivity {
         setSupportActionBar(toolbar_nickname);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        toolbar_nickname.setNavigationIcon(R.drawable.back24);
         toolbar_nickname.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

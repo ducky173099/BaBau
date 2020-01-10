@@ -95,8 +95,8 @@ public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick {
 
     @Override
     public void ClickChuanbi(int position) {
-        Toast.makeText(getContext(), "mang thai " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), InitCamnangActivity.class);
+        intent.putExtra("key_camnang",dataChuanbis.get(position).getContent());
         startActivity(intent);
     }
 }

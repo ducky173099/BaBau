@@ -67,29 +67,6 @@ public class DateThaikiAdapter extends RecyclerView.Adapter<DateThaikiAdapter.Vi
             holder.linear_thaiki.setBackgroundColor(Color.parseColor("#00FFFFFF"));
         }
 
-//        holder.linear_thaiki.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                row_index = position;
-//
-////                clickRecycler.onClickItem(position); // buoc 4 interface
-//                notifyDataSetChanged();
-//            }
-//        });
-//
-//        if(row_index == position){
-//            holder.linear_thaiki.setBackgroundColor(Color.parseColor("#8F016D69"));
-////            holder.txtstt.setTextColor(Color.parseColor("#ffffff"));
-//        }
-//        else
-//        {
-//            holder.linear_thaiki.setBackgroundColor(Color.parseColor("#00FFFFFF"));
-////            holder.txtstt.setTextColor(Color.parseColor("#000000"));
-//        }
-//
-
-
-
     }
 
 

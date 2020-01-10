@@ -5,7 +5,9 @@
     android:paddingLeft="5dp"
     android:layout_marginTop="5dp"
     android:layout_height="wrap_content">
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/custom_btnfff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -29,5 +31,5 @@
                 android:text="Thai kì"
                 android:id="@+id/txt_child"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </LinearLayout>

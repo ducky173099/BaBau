@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="#F3039268"
+    android:layout_gravity="fill_horizontal"
+    android:layout_height="?attr/actionBarSize">
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3039268">
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginHorizontal="60dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="tôlllll"
+            android:textColor="#fff"
+            android:id="@+id/tittletoolbar_camnang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/back_tb_camnang"
+        android:layout_marginLeft="17dp"
+        android:layout_centerVertical="true"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/icc_back"/>
+</RelativeLayout>

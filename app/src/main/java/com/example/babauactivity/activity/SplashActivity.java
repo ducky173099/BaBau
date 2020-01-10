@@ -32,18 +32,9 @@ public class SplashActivity extends AppCompatActivity {
     String db_path = "/databases/";
     InputStream is;
     Toolbar toolbar;
-    String timereal;
     String updateNDS;
     String ten;
     String nick;
-
-    String ngays;
-    String thangs;
-    String nams;
-
-    String SN;
-    String ST;
-    String SNam;
 
     String newDateSolar;
     Button btnluutt,btnboqua,btnTinhdusinh,btn_date;
@@ -51,11 +42,6 @@ public class SplashActivity extends AppCompatActivity {
     TextView edtname,edtnick;
     String dateNDS;
 
-    String takeDatenew;
-    String newLunar;
-    String lichamfirs;
-    String getnewdate;
-    String sendSolar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +148,6 @@ public class SplashActivity extends AppCompatActivity {
         btnboqua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String datebq = btn_date.getText().toString();
                 dateNDS = btn_date.getText().toString();
 
                 SharedPreferences sharedSaveInfo = getSharedPreferences("saveInfo", MODE_PRIVATE);

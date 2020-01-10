@@ -72,7 +72,7 @@ public class ThucphamActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar_thucpham);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar_thucpham.setNavigationIcon(R.drawable.back24);
         toolbar_thucpham.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

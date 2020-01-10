@@ -56,8 +56,6 @@ public class NameSonAdapter extends RecyclerView.Adapter<NameSonAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.imgalphabet.setImageResource(dataNameSon.get(position).getHinhalphabet());
-//        holder.imgstar.setImageResource(dataNameSon.get(position).getStar());
         holder.txtnameson.setText(dataNameSon.get(position).getNameson());
         holder.txtynghia.setText(dataNameSon.get(position).getYnghia());
 
@@ -74,7 +72,6 @@ public class NameSonAdapter extends RecyclerView.Adapter<NameSonAdapter.ViewHold
         holder.txtynghia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "y nghia " + position, Toast.LENGTH_SHORT).show();
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_name);

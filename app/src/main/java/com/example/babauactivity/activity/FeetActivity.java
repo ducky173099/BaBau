@@ -87,9 +87,6 @@ public class FeetActivity extends AppCompatActivity implements FeetAdapter.ItemC
         Date today = new Date(System.currentTimeMillis());
         SimpleDateFormat timeFormat= new SimpleDateFormat("hh:mm dd/MM/yyyy");
         timenow = timeFormat.format(today.getTime());
-//        txtRealtime.setText(timenow);
-
-
     }
 
     private void runFeet() {
@@ -113,13 +110,10 @@ public class FeetActivity extends AppCompatActivity implements FeetAdapter.ItemC
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-                Log.e("TAG","CHECK BTN: "+btnStart.isSelected());
-//                TextView txtStart = (TextView) view;
                 if (!btnStart.isSelected()) {
                     btnStart.setSelected(true);
                     timerHandler.removeCallbacks(timerRunnable);
                     btnStart.setText("Bắt Đầu");
-//                    btnStart.setBackground(getResources().getDrawable(R.drawable.radiusgreen));
                     increase_feet.setClickable(false);
 
                     recyclerView_feet = findViewById(R.id.recycler_feet);
@@ -139,7 +133,6 @@ public class FeetActivity extends AppCompatActivity implements FeetAdapter.ItemC
                     startTime = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnable, 0);
                     btnStart.setText("Kết Thúc");
-//                    btnStart.setBackground(getResources().getDrawable(R.drawable.radius_purple));
                     increase_feet.setClickable(true);
                     runFeet();
 

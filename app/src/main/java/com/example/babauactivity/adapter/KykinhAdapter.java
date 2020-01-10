@@ -49,10 +49,7 @@ public class KykinhAdapter extends RecyclerView.Adapter<KykinhAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("TAG","CHECK ITEM CLICK: "+dataKykinhs.get(position).getKinh());
-//                Toast.makeText(context, "kinh " + position, Toast.LENGTH_SHORT).show();
                 String ngayKinh = dataKykinhs.get(position).getKinh();
-//                        holder.txtKyKinh.getText().toString();
                 Intent intent = new Intent(context, NgayDSActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("ngaykinh", ngayKinh);

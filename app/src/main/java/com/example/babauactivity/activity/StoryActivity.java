@@ -66,6 +66,7 @@ public class StoryActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar_story);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_story.setNavigationIcon(R.drawable.back24);
         toolbar_story.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

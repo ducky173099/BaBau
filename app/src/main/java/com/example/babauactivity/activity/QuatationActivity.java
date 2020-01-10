@@ -46,7 +46,6 @@ public class QuatationActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.e("AAA", "onPageSelected: sssssssssssss");
                 FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
                 tf.detach(tabQuatationAdapter.getItem(position));
                 tf.attach(tabQuatationAdapter.getItem(position));
@@ -66,7 +65,7 @@ public class QuatationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar_quatation);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar_quatation.setNavigationIcon(R.drawable.back24);
         toolbar_quatation.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

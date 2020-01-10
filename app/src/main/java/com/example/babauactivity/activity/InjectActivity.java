@@ -1,5 +1,6 @@
 package com.example.babauactivity.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.InjectBabyAdapter;
 import com.example.babauactivity.model.DataInject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InjectActivity extends AppCompatActivity {
     Toolbar toolbarInject;
@@ -20,7 +24,8 @@ public class InjectActivity extends AppCompatActivity {
     ArrayList<DataInject> dataInjects;
     InjectBabyAdapter injectBabyAdapter;
 
-
+    TextView tittletoolbar_camnang;
+    ImageView back_tb_camnang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +61,42 @@ public class InjectActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        toolbarInject = findViewById(R.id.toolbar_inject);
+//        toolbarInject = findViewById(R.id.toolbar_inject);
+//
+//        setSupportActionBar(toolbarInject);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        toolbarInject.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
-        setSupportActionBar(toolbarInject);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        toolbarInject.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+
+        View view = getLayoutInflater().inflate(R.layout.toolbar, null);
+        ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT);
+        getSupportActionBar().setCustomView(view, layoutParams);
+        Toolbar parent = (Toolbar) view.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        tittletoolbar_camnang = view.findViewById(R.id.tittletoolbar_camnang);
+        back_tb_camnang = view.findViewById(R.id.back_tb_camnang);
+        tittletoolbar_camnang.setText("Tiêm chủng");
+        back_tb_camnang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+
+
     }
 }

@@ -47,10 +47,6 @@ public class PicturebabyAdapter extends RecyclerView.Adapter<PicturebabyAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Picasso.get()
-//                .load(dataPicturebabies.get(position).getHinh())
-//                .placeholder(R.drawable.one)
-//                .into(holder.imgBeyeu);
         holder.imgBeyeu.setImageResource(dataPicturebabies.get(position).getHinh());
         holder.itemView.setOnClickListener(new View.OnClickListener() { // buoc 4 interface
             @Override

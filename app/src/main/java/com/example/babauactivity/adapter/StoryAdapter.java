@@ -57,7 +57,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "truyen " + position, Toast.LENGTH_SHORT).show();
                 if (dataStories.get(position).getStatus() == 1){
                     dataStories.get(position).setStatus(0);
                     databaseHelper.UpdateName(dataStories.get(position).getId(),0);

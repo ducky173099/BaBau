@@ -78,14 +78,9 @@ public class NgayDSActivity extends AppCompatActivity {
         updateNDS = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)+ "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.YEAR));
 
 
-        Log.e("lichds", "ngayDuSinh: " + updateNDS );
-
-
-
         String ngaycothai = String.valueOf(30 - calendar.get(Calendar.DAY_OF_MONTH));
         int ngaydu = 280 - Integer.parseInt(ngaycothai);
 
-        Log.e("ngaycothai", "ngayDuSinh: " + ngaycothai);
         SharedPreferences sharedCothai = getSharedPreferences("ngaycothai", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedCothai.edit();
         editor.putString("keycothai",ngaycothai);
@@ -127,7 +122,7 @@ public class NgayDSActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String ngayKinh = intent.getStringExtra("ngaykinh");
-        Log.e("TA", "CHECK NGAY KINHL: " + ngayKinh);
+
         if (ngayKinh == null){
             day = 15;
             btnngayds.setText(day + " Ngày");
@@ -178,7 +173,6 @@ public class NgayDSActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("initDate",timeDS);
                 editor.apply();
-                Log.e("date", "onDateSet: " + timeDS );
 
                 ngayDuSinh(calendar,day);
             }

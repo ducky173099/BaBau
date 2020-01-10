@@ -139,7 +139,7 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
     private void setToolbar() {
         setSupportActionBar(toolbarThaiki);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        toolbarThaiki.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
+        toolbarThaiki.setNavigationIcon(R.drawable.back24);
         toolbarThaiki.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +162,6 @@ public class ThaiKiActivity extends AppCompatActivity implements DateThaikiAdapt
 
     @Override
     public void ClickDatetk(int position) {
-        Toast.makeText(this, "sfse", Toast.LENGTH_SHORT).show();
         switch (position){
             case 0:
                 selectFragment = new FragThaiki();

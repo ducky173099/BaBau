@@ -96,8 +96,8 @@ public class FragChuyenda extends Fragment implements ChuanbiAdapter.ItemClick {
 
     @Override
     public void ClickChuanbi(int position) {
-        Toast.makeText(getContext(), "Chuyển dạ " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), InitCamnangActivity.class);
+        intent.putExtra("key_camnang",dataChuanbis.get(position).getContent());
         startActivity(intent);
     }
 }

@@ -186,6 +186,7 @@ public class FragmentHome extends Fragment {
         txtdatedshome.setText(sharedSaveInfo.getString("getTextDate",""));
         namebeyeu.setText(sharedSaveInfo.getString("keyname","Tên bé Yêu"));
         nickbeyeu.setText(sharedSaveInfo.getString("keynick","Nickname bé"));
+        String dateSolar = sharedSaveInfo.getString("getTextDate","");
 
 
 
@@ -195,31 +196,46 @@ public class FragmentHome extends Fragment {
         Date date2 = null;
 
 
-        String dateSolar = sharedSaveInfo.getString("getTextDate","");
+
+
+
 
         realTime();
-        Log.e("khoang", "getDataSplash: "+timeCurrent);
-        Log.e("khoang", "getDataSplash: "+dateSolar);
-        try {
+//        SharedPreferences sharedSaveDate = getContext().getSharedPreferences("saveDate", MODE_PRIVATE);
+//        SharedPreferences.Editor editor= sharedSaveDate.edit(); //mSharedPreferences is instance of your SharedPreferences
+//        editor.putLong("time",System.currentTimeMillis());
+//        editor.commit();
+//
+//
+//        if(System.currentTimeMillis()- sharedSaveDate.getLong("time",0) < 24*60*60*1000){
+//            //with in a day
+//            realTime();
+//
+//        }else{
+//            //greater than a day
+//            Calendar c = Calendar.getInstance();
+//            try {
+//                c.setTime(simpleDateFormat.parse(timeCurrent));
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            c.add(Calendar.DATE, 1);
+//            timeCurrent = simpleDateFormat.format(c.getTime());
+//        }
 
+
+
+        try {
             date1 = simpleDateFormat.parse(timeCurrent);
             date2 = simpleDateFormat.parse(dateSolar);
-            Log.e("khoangcach", "date 1: " + date1);
-            Log.e("khoangcach", "date 2: " + date2);
-
 
             getDiff = date2.getTime() - date1.getTime();
             if (getDiff == 0){
                 getDaysDiff = 0;
             } else {
                 getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
-
             }
 
-
-
-            Log.e("khoangcach", "khoảng cách : " + getDaysDiff);
-            Log.e("khoangcach", "??? : " + getDiff);
 
             int numDate = (int) (280 - getDaysDiff);
             int weekDate = numDate/7;
@@ -232,10 +248,9 @@ public class FragmentHome extends Fragment {
             txtDaydate.setText(String.valueOf(dayDate));
 
             if (weekDate == 0 || weekDate == 1 || weekDate == 2){
-                txtWeightoffWeek.setText("0");
+                txtWeightoffWeek.setText("0 g");
                 txtSizeoffWeek.setText("0");
-            }
-            else if (weekDate == 3 || weekDate == 4){
+            } else if (weekDate == 3 || weekDate == 4){
                 txtWeightoffWeek.setText("0 g");
                 txtSizeoffWeek.setText("1");
             } else if (weekDate == 5){
@@ -334,13 +349,8 @@ public class FragmentHome extends Fragment {
 
         String [] arrSolar = dateSolar.split("/");
         if (arrSolar != null){
-//            String dateCothai = String.valueOf(30 - Integer.parseInt(arrSolar[0]));
-//            String ngaydu = String.valueOf(280 - Integer.parseInt(dateCothai));
-//            txtcothai.setText(dateCothai);
-//            txtngaydu.setText(ngaydu);
             amduong amduong = new amduong();
             dateLunar = amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[0]+"/"+amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[1]+"/"+amduong.Solar2Lunar(Integer.parseInt(arrSolar[0]),Integer.parseInt(arrSolar[1]),Integer.parseInt(arrSolar[2]))[2];
-
             txtlicham.setText(dateLunar);
         }
 

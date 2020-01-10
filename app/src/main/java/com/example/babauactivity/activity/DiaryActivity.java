@@ -74,6 +74,9 @@ public class DiaryActivity extends AppCompatActivity {
     String currentPhotoPath;
     Uri urlPicture;
 
+    String imageFilePath;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +123,6 @@ public class DiaryActivity extends AppCompatActivity {
 
                 TextView txtChonanh = dialog.findViewById(R.id.txtChonanh);
                 TextView txtChupanh = dialog.findViewById(R.id.txtChupanh);
-                TextView txtAnhdachup = dialog.findViewById(R.id.txtAnhdachup);
 
                 txtChonanh.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -135,18 +137,7 @@ public class DiaryActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                txtAnhdachup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-//                        ActivityCompat.requestPermissions(
-//                                DiaryActivity.this,
-//                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                                REQUEST_CODE_FOLDER
-//                        );
-                        TakePictureFolder();
-                        dialog.dismiss();
-                    }
-                });
+
 
                 txtChupanh.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -274,13 +265,8 @@ public class DiaryActivity extends AppCompatActivity {
     // do hinh anh chup dc vao day, nhan ket qua ve
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK) {
-//            urlPicture = data.getData();
-
+        if (requestCode == REQUEST_CODE_CAMERA) {
             Log.e("RequestCam", "anh chup dc : " + urlPicture);
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
-//            anhduocchon.setImageBitmap(imageBitmap);
 
             Picasso.get().load(urlPicture).into(anhduocchon);
 
@@ -290,13 +276,9 @@ public class DiaryActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT < 19) {
                 // lay duong dan trong android
                 urlPicture = data.getData();
-                Log.e("RequestCam", "folderrrrrr 11111: " + urlPicture);
-
             } else {
                 // lay duong dan trong android
                 urlPicture = data.getData();
-                Log.e("RequestCam", "folderrrrrr 22222: " + urlPicture);
-
                 final int takeFlags = data.getFlags()
                         & (Intent.FLAG_GRANT_READ_URI_PERMISSION
                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -308,8 +290,6 @@ public class DiaryActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
-            Log.e("RequestCam", "folderrrrrr 3333: " + urlPicture);
 
             try {
                 // mo cho der doc du lieu
@@ -331,32 +311,43 @@ public class DiaryActivity extends AppCompatActivity {
 
 
     private void TakeCamera() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
+        if (Build.VERSION.SDK_INT <= 19){
+            imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+            File imageFile = new File(imageFilePath);
+            urlPicture = Uri.fromFile(imageFile); // convert path to Uri
 
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                urlPicture = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, urlPicture);
-                startActivityForResult(takePictureIntent, REQUEST_CODE_CAMERA);
+            Intent it = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            it.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, urlPicture);
+            startActivityForResult(it, REQUEST_CODE_CAMERA);
+        } else {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    urlPicture = FileProvider.getUriForFile(this,
+                            "com.example.babauactivity.fileprovider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, urlPicture);
+                    startActivityForResult(takePictureIntent, REQUEST_CODE_CAMERA);
+                }
             }
         }
+
+
+        Log.e("RequestCam", "cammmm: " + urlPicture);
+
     }
 
 
     private void TakePictureFolder() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("image/*");
-//        startActivityForResult(intent, REQUEST_CODE_FOLDER);
 
         if (Build.VERSION.SDK_INT <19){
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

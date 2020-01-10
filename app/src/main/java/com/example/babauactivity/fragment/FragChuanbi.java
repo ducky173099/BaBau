@@ -99,8 +99,8 @@ public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { 
 
     @Override
     public void ClickChuanbi(int position) { // buco 7 interface
-        Toast.makeText(getContext(), "số tt cẩm nang " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), InitCamnangActivity.class);
+        intent.putExtra("key_camnang",dataChuanbis.get(position).getContent());
         startActivity(intent);
     }
 }

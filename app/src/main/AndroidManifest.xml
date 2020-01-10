@@ -20,7 +20,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.example.babauactivity.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -28,7 +28,8 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
 
-        <activity android:name=".activity.InitCamnangActivity"></activity>
+        <activity android:name=".activity.InitCamnangActivity"
+            android:theme="@style/test"></activity>
         <activity android:name=".activity.KyKinhActivity" />
         <activity android:name=".activity.NgayDSActivity" />
         <activity
@@ -56,16 +57,20 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activity.CannangActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:theme="@style/test"/>
         <activity android:name=".activity.HoatDongActivity" />
         <activity
             android:name=".activity.CamnangActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".activity.ItemPictureActivity" android:theme="@style/Theme.AppCompat.Translucent"/>
-        <activity android:name=".activity.PictureBabyActivity" />
+        <activity android:name=".activity.PictureBabyActivity"
+            android:theme="@style/test"/>
         <activity android:name=".activity.FeetActivity" />
-        <activity android:name=".activity.InjectActivity" />
-        <activity android:name=".activity.KichthuocActivity" />
+        <activity android:name=".activity.InjectActivity"
+            android:theme="@style/test"/>
+        <activity android:name=".activity.KichthuocActivity"
+            android:theme="@style/test"/>
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,25 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.appcompat.widget.Toolbar
-        android:background="#F3039268"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:id="@+id/toolbar_tp"
-        android:layout_height="?attr/actionBarSize">
-        <TextView
-            android:paddingRight="40dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tiêm phòng"
-            android:textColor="#fff"
-            android:textSize="20sp"/>
-    </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:paddingRight="7dp"
-        android:paddingLeft="7dp"
+        android:paddingLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout

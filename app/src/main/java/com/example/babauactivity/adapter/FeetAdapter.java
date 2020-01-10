@@ -60,7 +60,6 @@ public class FeetAdapter extends RecyclerView.Adapter<FeetAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "del " + position, Toast.LENGTH_SHORT).show();
                 dataFeets.remove(position);
                 notifyDataSetChanged();
             }

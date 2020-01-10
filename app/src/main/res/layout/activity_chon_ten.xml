@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_chonten"
         android:layout_height="?attr/actionBarSize">
         <TextView
-            android:paddingRight="40dp"
+            android:paddingRight="55dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_width="match_parent"

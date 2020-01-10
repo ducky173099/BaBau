@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:paddingRight="7dp"
     android:paddingLeft="7dp"
+    android:background="#39EDEFF1"
     android:layout_height="match_parent">
     <ScrollView
         android:scrollbars="none"
@@ -15,7 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:background="@drawable/custom_btnfff"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -73,7 +76,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
                                 <com.github.lzyzsd.circleprogress.ArcProgress
-                                    app:arc_suffix_text_padding="-12dp"
+                                    app:arc_suffix_text_padding="-11dp"
                                     app:arc_suffix_text_size="27sp"
                                     app:arc_text_size="27sp"
                                     app:arc_stroke_width="10dp"
@@ -361,8 +364,10 @@
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/custom_btnfff"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -380,7 +385,7 @@
                     android:textAlignment="textStart"
                     android:layout_height="match_parent"
                     android:gravity="start|center" />
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

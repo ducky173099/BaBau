@@ -46,7 +46,6 @@ public class ShopActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.e("AAA", "onPageSelected: sssssssssssss");
                 FragmentTransaction tf = getSupportFragmentManager().beginTransaction();
                 tf.detach(tabShopAdapter.getItem(position));
                 tf.attach(tabShopAdapter.getItem(position));
@@ -66,7 +65,7 @@ public class ShopActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar_shop);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar_shop.setNavigationIcon(R.drawable.back24);
         toolbar_shop.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -42,7 +42,6 @@ public class CookingAdapter extends RecyclerView.Adapter<CookingAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.img_Cook.setImageResource(dataCookings.get(position).getHinh());
         holder.txtDescCook.setText(dataCookings.get(position).getDescCook());
         holder.txtContentCook.setText(dataCookings.get(position).getContentCook());
 

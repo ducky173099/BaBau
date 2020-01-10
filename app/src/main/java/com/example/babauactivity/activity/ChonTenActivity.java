@@ -22,7 +22,6 @@ public class ChonTenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chon_ten);
-        Anhxa();
         actiontoolbar();
         initView();
 
@@ -42,7 +41,7 @@ public class ChonTenActivity extends AppCompatActivity {
         viewPagerSelectname.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Log.e("TTT", "onPageScrolled: 1  " );
+
             }
 
             @Override
@@ -63,8 +62,11 @@ public class ChonTenActivity extends AppCompatActivity {
     }
 
     private void actiontoolbar() {
+        toolbarChonten = findViewById(R.id.toolbar_chonten);
         setSupportActionBar(toolbarChonten);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbarChonten.setNavigationIcon(R.drawable.back24);
+
         toolbarChonten.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +75,5 @@ public class ChonTenActivity extends AppCompatActivity {
         });
     }
 
-    private void Anhxa() {
-        toolbarChonten = findViewById(R.id.toolbar_chonten);
 
-    }
 }
