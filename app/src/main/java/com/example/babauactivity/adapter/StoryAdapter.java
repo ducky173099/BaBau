@@ -51,7 +51,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.img_sttStory.setImageResource(dataStories.get(position).getHinh());
         holder.txtStory.setText(dataStories.get(position).getDescStory());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.ShopAdapter;
@@ -22,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragChome extends Fragment {
+public class FragChome extends Fragment implements View.OnClickListener {
     RecyclerView recycler_listchome;
     ArrayList<DataShop> dataShops;
     ArrayList<DataShop> dataSearch;
@@ -30,12 +31,14 @@ public class FragChome extends Fragment {
 
     EditText edtsearch_chome;
     DatabaseHelper databaseHelper;
+    ImageView delchome;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_chome, container, false);
 
+        delchome = view.findViewById(R.id.delchome);
         edtsearch_chome = view.findViewById(R.id.edtsearch_chome);
         recycler_listchome = view.findViewById(R.id.recycler_listchome);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
@@ -79,6 +82,12 @@ public class FragChome extends Fragment {
             }
         });
 
+        delchome.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_chome.getText().clear();
     }
 }

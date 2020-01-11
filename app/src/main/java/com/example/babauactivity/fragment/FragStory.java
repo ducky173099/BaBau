@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.StoryAdapter;
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragStory extends Fragment implements StoryAdapter.ItemClick {
+public class FragStory extends Fragment implements StoryAdapter.ItemClick, View.OnClickListener {
     RecyclerView recycler_liststory;
     ArrayList<DataStory> dataStories;
     ArrayList<DataStory> dataSearch;
@@ -32,6 +33,7 @@ public class FragStory extends Fragment implements StoryAdapter.ItemClick {
     EditText edtsearch_story;
     DatabaseHelper databaseHelper;
 
+    ImageView delstory;
 
 
     @Nullable
@@ -39,6 +41,7 @@ public class FragStory extends Fragment implements StoryAdapter.ItemClick {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_truyen, container, false);
 
+        delstory = view.findViewById(R.id.delstory);
         edtsearch_story = view.findViewById(R.id.edtsearch_story);
         recycler_liststory = view.findViewById(R.id.recycler_liststory);
 
@@ -86,11 +89,18 @@ public class FragStory extends Fragment implements StoryAdapter.ItemClick {
             }
         });
 
+        delstory.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void ClickStory(int posotion) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_story.getText().clear();
     }
 }

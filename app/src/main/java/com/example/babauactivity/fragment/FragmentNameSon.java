@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.activity.MainActivity;
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragmentNameSon extends BaseFragment<MainActivity> implements NameSonAdapter.ItemClick {
+public class FragmentNameSon extends BaseFragment<MainActivity> implements NameSonAdapter.ItemClick, View.OnClickListener {
     RecyclerView recyclerViewNameson;
 
     ArrayList<DataNameSon> dataNameSon;
@@ -33,6 +34,8 @@ public class FragmentNameSon extends BaseFragment<MainActivity> implements NameS
 
     NameSonAdapter adapter;
     DatabaseHelper databaseHelper;
+
+    ImageView delnameson;
 
     @Override
     protected int getLayoutId() {
@@ -54,6 +57,7 @@ public class FragmentNameSon extends BaseFragment<MainActivity> implements NameS
         dataNameSon = new ArrayList<>();
         dataNameSonList = new ArrayList<>();// search list
 
+        delnameson = findViewById(R.id.delnameson);
         recyclerViewNameson =findViewById(R.id.recycler_listson);
         edtSearchList = findViewById(R.id.edtSearchList);
 
@@ -110,10 +114,17 @@ public class FragmentNameSon extends BaseFragment<MainActivity> implements NameS
             }
         });
 
+        delnameson.setOnClickListener(this);
+
     }
 
     @Override
     public void ClickYnghia(int position) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtSearchList.getText().clear();
     }
 }

@@ -44,7 +44,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.img_SttShop.setImageResource(dataShops.get(position).getHinh());
         holder.txtDescShop.setText(dataShops.get(position).getDesc());
         holder.txtContentShop.setText(dataShops.get(position).getContet());
 

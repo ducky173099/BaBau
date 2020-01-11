@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
@@ -26,7 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { // buco 6 interface alt + emter
+public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick, View.OnClickListener { // buco 6 interface alt + emter
     RecyclerView recycler_listchuanbi;
     ArrayList<DataChuanbi> dataChuanbis;
     ArrayList<DataChuanbi> dataSearch;
@@ -34,12 +35,14 @@ public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { 
     EditText edtSearchCB;
 
     ChuanbiAdapter chuanbiAdapter;
+    ImageView delchuanbi;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_chuanbi, container, false);
 
+        delchuanbi = view.findViewById(R.id.delchuanbi);
         recycler_listchuanbi = view.findViewById(R.id.recycler_listchuanbi);
         edtSearchCB = view.findViewById(R.id.edtsearch_chuanbi);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
@@ -94,6 +97,7 @@ public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { 
 
         chuanbiAdapter.setClickChuanbi(this);
 
+        delchuanbi.setOnClickListener(this);
         return view;
     }
 
@@ -102,5 +106,10 @@ public class FragChuanbi extends Fragment implements ChuanbiAdapter.ItemClick { 
         Intent intent = new Intent(getContext(), InitCamnangActivity.class);
         intent.putExtra("key_camnang",dataChuanbis.get(position).getContent());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtSearchCB.getText().clear();
     }
 }

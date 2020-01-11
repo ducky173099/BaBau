@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.babauactivity.R;
@@ -24,7 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick {
+public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick, View.OnClickListener {
     RecyclerView recycler_listmangthai;
     ArrayList<DataChuanbi> dataChuanbis;
     ArrayList<DataChuanbi> dataSearchMT;
@@ -32,12 +33,14 @@ public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick {
     EditText edtSearch;
 
     ChuanbiAdapter chuanbiAdapter;
+    ImageView delmangthai;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_mangthai, container, false);
 
+        delmangthai = view.findViewById(R.id.delmangthai);
         recycler_listmangthai = view.findViewById(R.id.recycler_listmangthai);
         edtSearch = view.findViewById(R.id.edtsearch_mangthai);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
@@ -90,6 +93,8 @@ public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick {
 
         chuanbiAdapter.setClickChuanbi(this);
 
+        delmangthai.setOnClickListener(this);
+
         return view;
     }
 
@@ -98,5 +103,10 @@ public class FragMangthai extends Fragment implements ChuanbiAdapter.ItemClick {
         Intent intent = new Intent(getContext(), InitCamnangActivity.class);
         intent.putExtra("key_camnang",dataChuanbis.get(position).getContent());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtSearch.getText().clear();
     }
 }

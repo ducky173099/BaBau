@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.CookingAdapter;
@@ -22,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragMonanLike extends Fragment {
+public class FragMonanLike extends Fragment implements View.OnClickListener {
     ArrayList<DataCooking> dataCookings;
     ArrayList<DataCooking> dataSearch;
     DatabaseHelper databaseHelper;
@@ -32,11 +33,14 @@ public class FragMonanLike extends Fragment {
 
     EditText edtsearch_cookinglike;
 
+    ImageView delmonanlike;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_monanlike, container, false);
 
+        delmonanlike = view.findViewById(R.id.delmonanlike);
         recycler_listmonanlike = view.findViewById(R.id.recycler_listmonanlike);
         edtsearch_cookinglike = view.findViewById(R.id.edtsearch_cookinglike);
 
@@ -82,6 +86,13 @@ public class FragMonanLike extends Fragment {
             }
         });
 
+        delmonanlike.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_cookinglike.getText().clear();
     }
 }

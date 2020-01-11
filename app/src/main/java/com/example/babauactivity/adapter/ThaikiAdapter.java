@@ -115,7 +115,7 @@ public class ThaikiAdapter extends RecyclerView.Adapter<ThaikiAdapter.ViewHolder
                 }
             });
         } else {
-//            holder.txt2d.setTextColor(R.);
+
         }
 
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.ShopAdapter;
@@ -22,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragDamua extends Fragment {
+public class FragDamua extends Fragment implements View.OnClickListener {
     RecyclerView recycler_listdamua;
     ArrayList<DataShop> dataShops;
     ArrayList<DataShop> datasearch;
@@ -30,15 +31,17 @@ public class FragDamua extends Fragment {
     ShopAdapter shopAdapter;
 
     DatabaseHelper databaseHelper;
-    EditText edtsearch_shopsuckhoe;
+    EditText edtsearch_shopdamua;
+    ImageView deldamua;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_damua, container, false);
 
+        deldamua = view.findViewById(R.id.deldamua);
         recycler_listdamua = view.findViewById(R.id.recycler_listdamua);
-        edtsearch_shopsuckhoe = view.findViewById(R.id.edtsearch_shopsuckhoe);
+        edtsearch_shopdamua = view.findViewById(R.id.edtsearch_shopdamua);
 
         recycler_listdamua.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL, false));
 
@@ -54,7 +57,7 @@ public class FragDamua extends Fragment {
         shopAdapter.setDataShops(dataShops);
         recycler_listdamua.setAdapter(shopAdapter);
 
-        edtsearch_shopsuckhoe.addTextChangedListener(new TextWatcher() { // Search Lits
+        edtsearch_shopdamua.addTextChangedListener(new TextWatcher() { // Search Lits
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -84,7 +87,13 @@ public class FragDamua extends Fragment {
             }
         });
 
+        deldamua.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_shopdamua.getText().clear();
     }
 }

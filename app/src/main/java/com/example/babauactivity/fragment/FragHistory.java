@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.StoryAdapter;
@@ -22,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragHistory extends Fragment {
+public class FragHistory extends Fragment implements View.OnClickListener {
     RecyclerView recycler_liststoryHis;
     ArrayList<DataStory> dataStories;
     ArrayList<DataStory> dataSearch;
@@ -31,11 +32,13 @@ public class FragHistory extends Fragment {
     EditText edtsearch_storyHis;
     DatabaseHelper databaseHelper;
 
+    ImageView delHistory;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_history, container, false);
 
+        delHistory = view.findViewById(R.id.delHistory);
         edtsearch_storyHis = view.findViewById(R.id.edtsearch_storyHis);
         recycler_liststoryHis = view.findViewById(R.id.recycler_liststoryHis);
 
@@ -81,7 +84,14 @@ public class FragHistory extends Fragment {
             }
         });
 
+        delHistory.setOnClickListener(this);
+
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_storyHis.getText().clear();
     }
 }

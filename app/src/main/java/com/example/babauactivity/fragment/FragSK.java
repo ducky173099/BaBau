@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.ShopAdapter;
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragSK extends Fragment {
+public class FragSK extends Fragment implements View.OnClickListener {
     RecyclerView recycler_listsk;
     ArrayList<DataShop> dataShops;
     ArrayList<DataShop> datasearch;
@@ -31,12 +32,14 @@ public class FragSK extends Fragment {
 
     EditText edtsearch_sk;
     DatabaseHelper databaseHelper;
+    ImageView delsk;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_sk, container, false);
 
+        delsk = view.findViewById(R.id.delsk);
         edtsearch_sk = view.findViewById(R.id.edtsearch_sk);
         datasearch = new ArrayList<>();
         recycler_listsk = view.findViewById(R.id.recycler_listsk);
@@ -83,6 +86,13 @@ public class FragSK extends Fragment {
             }
         });
 
+        delsk.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_sk.getText().clear();
     }
 }

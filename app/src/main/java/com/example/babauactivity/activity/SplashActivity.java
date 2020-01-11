@@ -52,7 +52,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-//
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -83,14 +82,9 @@ public class SplashActivity extends AppCompatActivity {
                 btn_date.setText(realTime());
             }else{
                 btn_date.setText(updateNDS);
-
             }
 
         }
-
-
-
-
 
 
     }
@@ -139,7 +133,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 chonngay();
-
             }
         });
 
@@ -165,12 +158,8 @@ public class SplashActivity extends AppCompatActivity {
         btnluutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 ten = edtname.getText().toString();
                 nick = edtnick.getText().toString();
-
-
                 dateNDS = btn_date.getText().toString();
 
                 SharedPreferences sharedSaveInfo = getSharedPreferences("saveInfo", MODE_PRIVATE);
@@ -179,8 +168,6 @@ public class SplashActivity extends AppCompatActivity {
                 editor.putString("keyname",ten);
                 editor.putString("keynick",nick);
                 editor.commit();
-
-
 
                 Intent tt = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(tt);

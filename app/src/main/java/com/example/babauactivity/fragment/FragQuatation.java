@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.adapter.QuatationAdapter;
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragQuatation extends Fragment {
+public class FragQuatation extends Fragment implements View.OnClickListener {
     RecyclerView recycler_quatation;
     ArrayList<DataQuation> dataQuations;
     ArrayList<DataQuation> dataSearch;
@@ -32,11 +33,13 @@ public class FragQuatation extends Fragment {
 
     EditText edtsearch_quatation;
 
+    ImageView delQuata;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_quatation, container, false);
 
+        delQuata = view.findViewById(R.id.delQuata);
         recycler_quatation = view.findViewById(R.id.recycler_quatation);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
         recycler_quatation.setLayoutManager(linearLayoutManager);
@@ -90,7 +93,14 @@ public class FragQuatation extends Fragment {
             }
         });
 
+        delQuata.setOnClickListener(this);
+
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtsearch_quatation.getText().clear();
     }
 }

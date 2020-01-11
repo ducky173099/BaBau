@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.activity.MainActivity;
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FragmentNameDaughter extends BaseFragment<MainActivity> {
+public class FragmentNameDaughter extends BaseFragment<MainActivity> implements View.OnClickListener {
     RecyclerView recyclerViewNameDauter;
 
     ArrayList<DataNameSon> dataNameSon;
@@ -33,6 +34,8 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
     NameSonAdapter adapter;
 
     DatabaseHelper databaseHelper;
+
+    ImageView delnamedauter;
 
     @Override
     protected int getLayoutId() {
@@ -56,6 +59,7 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
         databaseHelper = new DatabaseHelper(getContext());
         dataNameSonList = new ArrayList<>();// search list
 
+        delnamedauter = findViewById(R.id.delnamedauter);
 
         recyclerViewNameDauter = findViewById(R.id.recycler_listDauter);
         edtSearchnamedauter = findViewById(R.id.edtSearchnamedauter);
@@ -103,5 +107,12 @@ public class FragmentNameDaughter extends BaseFragment<MainActivity> {
             }
         });
 
+        delnamedauter.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        edtSearchnamedauter.getText().clear();
     }
 }
