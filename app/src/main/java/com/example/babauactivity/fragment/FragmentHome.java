@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -87,6 +89,7 @@ public class FragmentHome extends Fragment {
     String dateLunar;
 
     ArcProgress arc_progress;
+    String checkSplash;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -101,6 +104,8 @@ public class FragmentHome extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+
+
     }
 
     @Nullable
@@ -112,6 +117,8 @@ public class FragmentHome extends Fragment {
         SelectTK(view);
         luuhanhtrinh = view.findViewById(R.id.luuhanhtrinh);
 
+        checkSplash = "hahaa";
+
         imgSetting = view.findViewById(R.id.imgSetting);
         imgSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +127,7 @@ public class FragmentHome extends Fragment {
                 Intent intent = new Intent(getContext(), SplashActivity.class);
 //                intent.putExtra("sendDatenew",newdateds);
                 intent.putExtra("sendsolar",solarchild);
+                intent.putExtra("checksplash", checkSplash);
                 startActivity(intent);
 
             }
@@ -161,7 +169,6 @@ public class FragmentHome extends Fragment {
 
 
 
-
         return view;
     }
 
@@ -187,6 +194,14 @@ public class FragmentHome extends Fragment {
         namebeyeu.setText(sharedSaveInfo.getString("keyname","Tên bé Yêu"));
         nickbeyeu.setText(sharedSaveInfo.getString("keynick","Nickname bé"));
         String dateSolar = sharedSaveInfo.getString("getTextDate","");
+
+        if (sharedSaveInfo.getString("keyname","Tên bé Yêu") == "" && sharedSaveInfo.getString("keynick","Nickname bé") == ""){
+            namebeyeu.setText("Tên bé Yêu");
+            nickbeyeu.setText("Nickname bé");
+        } else if (sharedSaveInfo.getString("keyname","").length() <= 0 && sharedSaveInfo.getString("keynick","").length() <= 0){
+            namebeyeu.setText("Tên bé Yêu");
+            nickbeyeu.setText("Nickname bé");
+        }
 
 
 

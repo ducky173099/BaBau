@@ -1,8 +1,15 @@
 package com.example.babauactivity.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,12 +30,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
     Context context;
     ArrayList<DataDiary> dataDiaries;
     DatabaseHelper databaseHelper;
+
+    private Resources mResources;
+
 
     public void setDataDiaries(ArrayList<DataDiary> dataDiaries) {
         this.dataDiaries = dataDiaries;
@@ -59,6 +71,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DataDiary dataDiary = dataDiaries.get(position);
 
+
         holder.txtTimeDiary.setText(dataDiaries.get(position).getTime());
         holder.txtDiary.setText(dataDiaries.get(position).getContent());
 
@@ -76,6 +89,19 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             holder.imgDiary.setImageBitmap(bitmap);
 
+
+            // custom border radius image
+            float cornerRadius = 50.0f;
+            mResources = Resources.getSystem();
+            RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(
+                    mResources,
+                    bitmap
+            );
+            roundedBitmapDrawable.setCornerRadius(cornerRadius);
+            roundedBitmapDrawable.setAntiAlias(true);
+            holder.imgDiary.setImageDrawable(roundedBitmapDrawable);
+
+
             Log.e("logimg", "onBindViewHolder: " + hinhanh );
 //            Picasso.get().load(hinhanh).into(holder.imgDiary);
 //            Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh,0, hinhanh.length);
@@ -84,7 +110,11 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder>{
             holder.imgDiary.setVisibility(View.GONE);
         }
 
+
+
+
     }
+
 
     @Override
     public int getItemCount() {

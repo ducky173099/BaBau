@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.fragment.FragmentHome;
@@ -39,8 +41,10 @@ public class SplashActivity extends AppCompatActivity {
     String newDateSolar;
     Button btnluutt,btnboqua,btnTinhdusinh,btn_date;
 
-    TextView edtname,edtnick;
+    EditText edtname,edtnick;
     String dateNDS;
+
+    String checkFraghome;
 
 
     @Override
@@ -50,16 +54,12 @@ public class SplashActivity extends AppCompatActivity {
 
         xuLiSaoChepCSDL();
 
+        Log.e("splash", "luc truoc: " + checkFraghome);
 
+        Intent ischeck = getIntent();
+        checkFraghome = ischeck.getStringExtra("checksplash");
+        Log.e("splash", "luc sau Intent: " + checkFraghome);
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                t = new Intent(SplashActivity.this, MainActivity.class);
-//                startActivity(t);
-//                finish();
-//            }
-//        }, 500);
 
         initView();
         setInfo();
@@ -121,10 +121,44 @@ public class SplashActivity extends AppCompatActivity {
         edtnick = findViewById(R.id.edtnick);
         btn_date = findViewById(R.id.btn_date);
 
-
         SharedPreferences sharedSaveInfo = getSharedPreferences("saveInfo", MODE_PRIVATE);
         edtname.setText(sharedSaveInfo.getString("keyname",""));
         edtnick.setText(sharedSaveInfo.getString("keynick", ""));
+
+
+
+        String nameEmpty = edtname.getText().toString();
+        String nickEmpty = edtname.getText().toString();
+
+        Log.e("splash", "luc sau: " + checkFraghome);
+
+        if (checkFraghome == null && nameEmpty.matches("") && nickEmpty.matches("")){
+            Log.e("kyyy", "dk 1111 " );
+        } else if (checkFraghome != null && nameEmpty.length() > 0 && nickEmpty.length() > 0){
+            Log.e("kyyy", "dk 2222 " );
+
+        } else if (checkFraghome == null && nameEmpty.length() > 0 && nickEmpty.length() > 0){
+            Log.e("kyyy", "dk 33333 " + checkFraghome);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dateNDS = btn_date.getText().toString();
+
+                    SharedPreferences sharedSaveInfo = getSharedPreferences("saveInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedSaveInfo.edit();
+                    editor.putString("getTextDate",dateNDS);
+                    editor.commit();
+
+                    t = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(t);
+                    finish();
+                }
+            }, 0);
+        }
+
+
+
 
     }
 

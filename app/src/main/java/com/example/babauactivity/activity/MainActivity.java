@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.babauactivity.R;
 import com.example.babauactivity.database.Database;
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new FragmentHome()).commit();
-
 
     }
 
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
-
 
 
 }

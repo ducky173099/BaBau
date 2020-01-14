@@ -8,5 +8,7 @@
     <color name="purple">#C418BB</color>
     <color name="xanhtop">#1AB3A6</color>
     <color name="xanhgreen">#26990A</color>
+    <color name="xanhdialog">#1883AD</color>
+    <color name="xanhbgdialog">#F0152A49</color>
 
 </resources>
