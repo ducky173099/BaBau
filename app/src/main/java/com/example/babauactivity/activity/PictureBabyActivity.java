@@ -51,7 +51,7 @@ public class PictureBabyActivity extends AppCompatActivity implements Picturebab
 
         dataPicturebabies = new ArrayList<>();
         for (int i = 0; i <= 20 ; i++) {
-            dataPicturebabies.add(new DataPicturebaby(R.drawable.mushroom));
+            dataPicturebabies.add(new DataPicturebaby(R.drawable.bb));
         }
 
         picturebabyAdapter = new PicturebabyAdapter(getApplicationContext(), dataPicturebabies);

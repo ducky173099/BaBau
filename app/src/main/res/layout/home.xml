@@ -76,8 +76,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content">
                                 <com.github.lzyzsd.circleprogress.ArcProgress
-                                    app:arc_suffix_text_padding="-11dp"
-                                    app:arc_suffix_text_size="27sp"
+                                    app:arc_suffix_text_padding="-8dp"
+                                    app:arc_suffix_text_size="25sp"
                                     app:arc_text_size="27sp"
                                     app:arc_stroke_width="10dp"
                                     app:arc_text_color="#13B8AA"

@@ -125,7 +125,6 @@ public class FragmentHome extends Fragment {
             public void onClick(View view) {
                 String solarchild = txtdatedshome.getText().toString();
                 Intent intent = new Intent(getContext(), SplashActivity.class);
-//                intent.putExtra("sendDatenew",newdateds);
                 intent.putExtra("sendsolar",solarchild);
                 intent.putExtra("checksplash", checkSplash);
                 startActivity(intent);

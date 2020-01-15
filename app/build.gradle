@@ -49,4 +49,5 @@ dependencies {
     implementation 'com.github.shinelw:library:1.0.1'
     implementation 'com.mikhaellopez:circularprogressbar:1.0.0'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+    implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 }
